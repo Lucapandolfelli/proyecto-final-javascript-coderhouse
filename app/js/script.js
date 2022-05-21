@@ -1,7 +1,8 @@
+// Navbar Menu Toggle
 let navbarButton = document.getElementById('navbarButton');
 let navbarMenu = document.getElementById('navbarMenu');
 
-navbarButton.addEventListener('click', () =>{
+navbarButton.addEventListener('click', () => {
 
     if(navbarButton.classList.contains('close')){
         navbarMenu.classList.remove('move-in');
@@ -15,3 +16,10 @@ navbarButton.addEventListener('click', () =>{
     }
     
 });
+
+// Sticky Navbar
+let navbar = document.getElementById('navbar');
+
+window.addEventListener("scroll", () => {
+    navbar.classList.toggle("sticky", window.pageYOffset > 1)
+})

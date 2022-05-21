@@ -1,4 +1,5 @@
 @use '../util/colours.scss' as *;
+@use '../util/mixins.scss' as *;
 @use '../util/breakpoints.scss' as *;
 
 .gallery{
@@ -29,6 +30,8 @@
         height: 300px;
         width: 300px;
         background-color: $clr--primary--1;
+        border-radius: .25rem;
+        overflow: hidden;
 
         @include mq-down(medium){
             height: 250px;
@@ -38,6 +41,15 @@
         @include mq-down(small){
             height: 300px;
             width: 300px;
+        }
+
+        &:hover{
+            cursor: pointer;
+        }
+
+        img{
+            @include wh-100;
+            object-fit: cover;
         }
     }
 }

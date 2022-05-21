@@ -6,18 +6,19 @@
     background-color: $clr--primary--1;
 
     &__content{
-
+        background-color: $clr--primary--2;
+        height: 30vh;
     }
 
     &__copyright{
         background-color: $clr--light--900;
         color: $clr--primary--2;
-        padding-block: 1.5rem;
+        padding-block: 1rem;
         display: grid;
         place-content: center;
 
         &--text{
-            font-size: 1rem;
+            font-size: .85rem;
             text-align: center;
         }
 

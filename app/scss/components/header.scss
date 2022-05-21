@@ -4,7 +4,7 @@
 
 header{
     position: relative;
-    height: 60vh;
+    height: 70vh;
     background-color: $clr--primary--1;
     background-size: cover;
     background-attachment: fixed;
@@ -16,6 +16,8 @@ header{
         left: 0;
         width: 100%;
         height: 100px;
+        transition: all .6s ease-in;
+        z-index: 9999;
 
         .container{
             @include flex(space-between, center, row);
@@ -118,13 +120,17 @@ header{
                 }
             }
         }
+
+        &.sticky{
+            background-color: $clr--primary--2;
+            height: 80px;
+        }
     }
 
     .banner{
         display: grid;
         place-items: center;
-        height: 100%;
-        width: 100%;
+        @include wh-100;
 
         &__content{
             width: min(100% - 5rem, 500px);
