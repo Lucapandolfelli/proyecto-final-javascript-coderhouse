@@ -1,0 +1,43 @@
+@use '../util/colours.scss' as *;
+@use '../util/breakpoints.scss' as *;
+
+.gallery{
+    &__container{
+        display: grid;
+        grid-template-columns: repeat(4, 300px);
+        gap: 1rem;
+        place-content: center;
+
+        @include mq-down(large){
+            grid-template-columns: repeat(3,300px);
+        }
+
+        @include mq-down(medium){
+            grid-template-columns: repeat(3, 250px);
+        }
+
+        @include mq-down(small){
+            grid-template-columns: repeat(2,300px);
+        }
+
+        @include mq-down(xsmall){
+            grid-template-columns: 300px;
+        }
+    }
+
+    &__item{
+        height: 300px;
+        width: 300px;
+        background-color: $clr--primary--1;
+
+        @include mq-down(medium){
+            height: 250px;
+            width: 250px;
+        }
+
+        @include mq-down(small){
+            height: 300px;
+            width: 300px;
+        }
+    }
+}

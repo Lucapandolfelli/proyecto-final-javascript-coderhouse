@@ -1,0 +1,11 @@
+@mixin flex($justifyContent, $alignItems, $direction) {
+    display: flex;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+    flex-direction: $direction;
+}
+
+@mixin wh-100 {
+    width: 100%;
+    height: 100%;
+}

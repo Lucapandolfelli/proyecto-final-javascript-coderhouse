@@ -1,0 +1,2 @@
+"use strict";var navbarButton=document.getElementById("navbarButton"),navbarMenu=document.getElementById("navbarMenu");navbarButton.addEventListener("click",(function(){navbarButton.classList.contains("close")?(navbarMenu.classList.remove("move-in"),navbarMenu.classList.add("move-out"),navbarButton.classList.remove("close")):(navbarButton.classList.add("close"),navbarMenu.style.display="flex",navbarMenu.classList.remove("move-out"),navbarMenu.classList.add("move-in"))}));
+//# sourceMappingURL=script.js.map

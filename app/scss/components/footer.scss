@@ -1,0 +1,25 @@
+@use '../util/colours.scss' as *;
+@use '../util/breakpoints.scss' as *;
+
+.footer{
+    color: $clr--light--500;
+    background-color: $clr--primary--1;
+
+    &__content{
+
+    }
+
+    &__copyright{
+        background-color: $clr--light--900;
+        color: $clr--primary--2;
+        padding-block: 1.5rem;
+        display: grid;
+        place-content: center;
+
+        &--text{
+            font-size: 1rem;
+            text-align: center;
+        }
+
+    }
+}

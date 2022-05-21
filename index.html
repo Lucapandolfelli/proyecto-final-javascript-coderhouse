@@ -6,12 +6,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <title>Document</title>
+    <title>PhotoSearch</title>
     <link rel="stylesheet" href="dist/style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar__brand">
+                    <a href="#"><h1>PhotoSearch</h1></a>
+                </div>
+                <ul class="navbar__menu" id="navbarMenu">
+                    <li><a href="#" class="navbar__menu--link">Home</a></li>
+                    <li><a href="#" class="navbar__menu--link">Categories</a></li>
+                    <li><a href="#" class="navbar__menu--link">About</a></li>
+                </ul>
+                <button class="navbar__btn" id="navbarButton">
+                    <div class="navbar__btn--container">
+                     <span></span>
+                     <span></span>
+                     <span></span>
+                    </div>
+                </button>
+            </div>
+        </nav>
+        <div class="banner">
+            <div class="banner__content">
+                <h1 class="banner__content--title">Lorem ipsum.</h1>
+                <p class="banner__content--text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, accusantium!</p>
+                <input type="text" class="banner__content--input">
+            </div>
+        </div>
+        <div class="wave">
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none"
+            style="height: 100%; width: 100%;">
+            <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                style="stroke: none; fill: #e8e8e8;"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="site-page">
+        <!-- Gallery Section-->
+        <section class="gallery">
+            <div class="gallery__container">
+
+                <!-- Gallery Item -->
+                <article class="gallery__item">
+                    <img src="" alt="">
+                </article>
+
+                <!-- Gallery Item -->
+                <article class="gallery__item">
+                    <img src="" alt="">
+                </article>
+
+                <!-- Gallery Item -->
+                <article class="gallery__item">
+                    <img src="" alt="">
+                </article>
+
+                <!-- Gallery Item -->
+                <article class="gallery__item">
+                    <img src="" alt="">
+                </article>
+
+                <!-- Gallery Item -->
+                <article class="gallery__item">
+                    <img src="" alt="">
+                </article>
+
+                <!-- Gallery Item -->
+                <article class="gallery__item">
+                    <img src="" alt="">
+                </article>
+
+                <!-- Gallery Item -->
+                <article class="gallery__item">
+                    <img src="" alt="">
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <section class="footer__content"></section>
+        <section class="footer__copyright">
+            <h6 class="footer__copyright--text">&copy; PhotoSearch 2022 - Todos los derechos reservados</h6>
+        </section>
+    </footer>
     <script src="dist/script.js"></script>
 </body>
 </html>

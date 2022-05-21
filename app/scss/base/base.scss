@@ -1,3 +1,22 @@
+@use '../util/colours.scss' as *;
+@use '../util/classes.scss' as *;
+@use '../util/breakpoints.scss' as *;
+
+body{
+    font-family: 'Nunito', sans-serif;
+    color: $clr--dark--400;
+    background-color: $clr--light--500;
+}
+
 h1{
-    color: red;
+    color: $clr--light--900;
+}
+
+.site-page{
+    @extend .container;
+    margin-block: 5rem;
+
+    @include mq-down(small){
+        margin-block: 3rem;
+    }
 }
