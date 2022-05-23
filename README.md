@@ -7,4 +7,4 @@ El simulador, valga la redundancia, simula el ingreso de una palabra (mayor o ig
 
 Puede ver el simulador funcionando [aquí](https://lucapandolfelli.github.io/proyecto-final-javascript-coderhouse/).
 
-Próximamente, se puede mejorar el simulador con la integración de arrays u objetos.
+Próximamente, se mejorará el simulador con la integración de arrays u objetos.
