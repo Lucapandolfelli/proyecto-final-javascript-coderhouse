@@ -6,13 +6,13 @@
     background-color: $clr--primary--1;
 
     &__content{
-        background-color: $clr--primary--2;
+        background-color: $clr--primary--1;
         height: 30vh;
     }
 
     &__copyright{
-        background-color: $clr--primary--1;
-        color: $clr--light--500;
+        background-color: $clr--primary--2;
+        color: $clr--light--900;
         padding-block: 1rem;
         display: grid;
         place-content: center;

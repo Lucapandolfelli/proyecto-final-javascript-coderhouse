@@ -14,7 +14,8 @@ h1{
 
 .site-page{
     @extend .container;
-    margin-block: 5rem;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
 
     @include mq-down(small){
         margin-block: 3rem;

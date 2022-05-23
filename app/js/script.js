@@ -1,25 +1,17 @@
-// Navbar Menu Toggle
-let navbarButton = document.getElementById('navbarButton');
-let navbarMenu = document.getElementById('navbarMenu');
+let palabra = prompt('Introduzca lo que desee buscar:');
 
-navbarButton.addEventListener('click', () => {
-
-    if(navbarButton.classList.contains('close')){
-        navbarMenu.classList.remove('move-in');
-        navbarMenu.classList.add('move-out');
-        navbarButton.classList.remove('close');
-    }else{
-        navbarButton.classList.add('close');
-        navbarMenu.style.display = 'flex';
-        navbarMenu.classList.remove('move-out');
-        navbarMenu.classList.add('move-in');
+const validarPalabra = () => {
+    if (palabra.length < 3){
+        alert('Debe introducir una palabra mayor a 3 letras');
+    } else{
+        listarImagenes(palabra);
     }
-    
-});
+}
 
-// Sticky Navbar
-let navbar = document.getElementById('navbar');
+const listarImagenes = (palabra) => {
+    for(let i=1; i<=12; i++){
+        console.log('Imagen : ' + palabra + `(${i}).jpg`);
+    }
+}
 
-window.addEventListener("scroll", () => {
-    navbar.classList.toggle("sticky", window.pageYOffset > 1)
-})
+validarPalabra()

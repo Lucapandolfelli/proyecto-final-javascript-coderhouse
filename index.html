@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +8,7 @@
     <meta name="keywords" content="">
     <title>PhotoSearch</title>
     <link rel="stylesheet" href="dist/style.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./dist/assets/icons/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,13 +16,20 @@
 </head>
 <body>
     <header>
+        <div class="topbar">
+           <div class="container">
+                <a class="topbar-logo" href="#"><h1>PhotoSearch</h1></a>
+                <a class="social-button" href="https://github.com/Lucapandolfelli/proyecto-final-javascript-coderhouse" target="_blank"><i class="fa-brands fa-github"></i></a>
+           </div>
+        </div>
         <div class="banner">
             <div class="banner__content">
                 <div class="banner__content--text">
-                    <a href="#"><h1>PhotoSearch</h1></a>
+                    <p>Introduzca lo que desee buscar.</p>
                 </div>
                 <div class="banner__content--search">
-                    <input type="text" placeholder="Search">
+                    <input type="text" placeholder="Buscar...">
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>
         </div>

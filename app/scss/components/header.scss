@@ -9,11 +9,50 @@ header{
     background-size: cover;
     background-attachment: fixed;
 
+    .topbar{
+        padding-block: 1rem;
+
+        .container{
+            @include flex(space-between, center, row);
+
+            .topbar-logo{
+                text-decoration: none;
+
+                h1{
+                    color: $clr--light--500;
+                    font-size: 1.5rem;
+                }
+            }
+
+            .social-button{
+                @include flex(center, center, row);
+                text-decoration: none;
+                background-color: $clr--primary--2;
+                border-radius: 50%;
+                height: 30px;
+                width: 30px;
+                transition: all .7s ease;
+    
+                i{
+                    color: $clr--light--500;
+                }
+
+                &:hover{
+                    background-color: $clr--light--900;
+                    
+                    i{
+                        color: $clr--primary--2;
+                    }
+                }
+            }
+        }
+    }
+
     .banner{
         display: grid;
         place-items: center;
         width: 100%;
-        height: calc(100% - 150px);
+        height: calc(100% - 225px);
 
         &__content{
             width: min(100% - 5rem, 500px);
@@ -21,30 +60,34 @@ header{
 
             &--text{
                 padding-bottom: 1rem;
+                text-align: center;
 
-                a{
-                    text-decoration: none;
-    
-                    h1{
-                        color: $clr--light--500;
-                        text-align: center;
-                    }
+                p{
+                    color: $clr--light--900;
+                    font-size: 1.25rem;
                 }
             }
 
             &--search{
+                position: relative;
 
                 input{
                     width: 100%;
                     border: none;
                     border-radius: 3rem;
-                    padding: 12px 24px;
                     height: 3rem;
-                    padding-inline: 1.5rem;
+                    padding-inline: 3rem;
 
                     &:focus{
                         border: none;
                     }
+                }
+
+                i{
+                    position: absolute;
+                    top: 30%;
+                    left: 1rem;
+                    color: $clr--primary--1;
                 }
             }
         }
