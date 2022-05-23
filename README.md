@@ -1,4 +1,5 @@
 # Proyecto final del curso de Javascript de Coderhouse
+![Imagen del proyecto](/dist/assets/images/screenshot.png)
 ## Idea
 Utilizando la api de [Pexels](https://www.pexels.com/es-es/api/), la cual básicamente nos retorna imágenes aleatoriamente o si ingresamos una palabra en especifico nos devuelve imágenes relacionadas con esa palabra, plantee un aplicación que nos permita consumir esa api con el fin de encontrar las imagágenes que querramos a partir de una palabra o incluso una frase.
 
