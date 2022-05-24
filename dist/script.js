@@ -1,2 +1,2 @@
-"use strict";var palabra=prompt("Introduzca lo que desee buscar:"),validarPalabra=function(){palabra.length<3?alert("Debe introducir una palabra mayor a 3 letras"):listarImagenes(palabra)},listarImagenes=function(a){for(var r=1;r<=12;r++)console.log("Imagen : "+a+"(".concat(r,").jpg"))};validarPalabra();
+let palabra=prompt("Introduzca lo que desee buscar:");const validarPalabra=()=>{palabra.length<3?alert("Debe introducir una palabra mayor a 3 letras"):listarImagenes(palabra)},listarImagenes=a=>{for(let r=1;r<=12;r++)console.log("Imagen : "+a+`(${r}).jpg`)};palabra.length<3?alert("Debe introducir una palabra mayor a 3 letras"):listarImagenes(palabra);
 //# sourceMappingURL=script.js.map
