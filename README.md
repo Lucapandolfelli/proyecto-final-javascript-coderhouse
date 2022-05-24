@@ -8,7 +8,7 @@ Utilizando la api de [Pexels](https://www.pexels.com/es-es/api/), la cual básic
 Incluso cada item que devuelve la api cuenta con el nombre del fotográfo que tomó la foto, por lo que se mostrará esa ifnromación mediante un modal al hacer click sobre una imagen.
 
 ## Simulador
-El simulador, valga la redundancia, simula el ingreso de una palabra (mayor o igual de 3 caracteres) y la devolución de una lista de 12 imágenes relacionadas con esa palabra (se devuelve mediante consola ya que se usop un ciclo 'for').
+El simulador, valga la redundancia, simula el ingreso de una palabra (mayor o igual de 3 caracteres) y la devolución de una lista de 12 imágenes relacionadas con esa palabra (se devuelve mediante consola ya que se uso un ciclo 'for').
 
 Puede ver el simulador funcionando [aquí](https://lucapandolfelli.github.io/proyecto-final-javascript-coderhouse/).
 
