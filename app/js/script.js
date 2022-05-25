@@ -43,7 +43,6 @@ const validateSearch = (word) => {
 const filterPhotos = (word) => {
     // Filtramos el array de objetos para ver si la palabra buscada se encuentra en el alt de la foto. 
     let filteredPhotos = photos.filter(photo => photo.alt.toLowerCase().includes(word));
-
     /* 
     Array.filter() devuelve un array nuevo si se cumple la condición y uno vacío si no se cumple. 
     Comprobamos si el array está vacío, es decir, que la plabra buscada no matcheó con ningún objeto de nuestro array(simulador de base de datos). 
@@ -58,15 +57,16 @@ const filterPhotos = (word) => {
     }
 }
 
-// A traves de prompt pedimos el ingreso de una palabra o una frase.
-let search = prompt('Introduzca lo que desee buscar:');
-
-// Validamos si el resultado es 'true' o 'false'.
-if (validateSearch(search) == true){
-    // Cuando sea 'true', llamamos a la función que filtra.
-    filterPhotos(search);
-} else{
-    // Cuando es 'false', lanzamos la alerta de que no cumple la condición.
-    alert('Debe introducir una palabra mayor a 3 letras');
+while(true){
+    // A traves de prompt pedimos el ingreso de una palabra o una frase.
+    let search = prompt('Introduzca lo que desee buscar:');
+    // Validamos si el resultado es 'true' o 'false'.
+    if (validateSearch(search) == true){
+        // Cuando sea 'true', llamamos a la función que filtra.
+        filterPhotos(search);
+        break;
+    } else{
+        // Cuando es 'false', lanzamos la alerta de que no cumple la condición.
+        alert('Debe introducir una palabra mayor a 3 letras');
+    }
 }
-
