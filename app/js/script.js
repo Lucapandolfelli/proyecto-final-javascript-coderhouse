@@ -1,6 +1,6 @@
 /* 
-    Creamos un objeto teniendo en cuenta los parámetros que nos devuelve la API en la docmuentación de la misma. 
-    Link: https://www.pexels.com/es-es/api/documentation/#photos-overview.
+Creamos un objeto teniendo en cuenta los parámetros que nos devuelve la API en la docmuentación de la misma. 
+Link: https://www.pexels.com/es-es/api/documentation/#photos-overview.
 */
 class Photo {
     constructor(id, url, src, photographer, alt){
@@ -45,8 +45,8 @@ const filterPhotos = (word) => {
     let filteredPhotos = photos.filter(photo => photo.alt.toLowerCase().includes(word));
 
     /* 
-        Array.filter() devuelve un array nuevo si se cumple la condición y uno vacío si no se cumple. 
-        Comprobamos si el array está vacío, es decir, que la plabra buscada no matcheó con ningún objeto de nuestro array(simulador de base de datos). 
+    Array.filter() devuelve un array nuevo si se cumple la condición y uno vacío si no se cumple. 
+    Comprobamos si el array está vacío, es decir, que la plabra buscada no matcheó con ningún objeto de nuestro array(simulador de base de datos). 
     */
     if (filteredPhotos.length == 0){
         alert('No se pudo encontrar ninguna foto relacionada a su búsqueda.');
