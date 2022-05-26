@@ -51,9 +51,14 @@ const filterPhotos = (word) => {
         alert('No se pudo encontrar ninguna foto relacionada a su búsqueda.');
     } else{
         // Y si matcheó simplemente devolvemos el objeto(la foto). 
-        for (const photo of filteredPhotos){
+        /* for (const photo of filteredPhotos){
             console.log(photo);
-        }
+        } */
+
+        // Aplicando la función 'forEach' de orden superior.
+        filteredPhotos.forEach((photo) => {
+            console.log(photo);
+        });
     }
 }
 
