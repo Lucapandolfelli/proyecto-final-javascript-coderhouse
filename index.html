@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="dist/script.js"></script>
 </head>
 <body>
     <header>
@@ -29,7 +28,7 @@
                     <p>Introduzca lo que desee buscar.</p>
                 </div>
                 <div class="banner__content--search">
-                    <input type="text" placeholder="Buscar...">
+                    <input type="text" placeholder="Buscar..." id="input">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>
@@ -38,8 +37,7 @@
             <svg viewBox="0 0 500 150" preserveAspectRatio="none"
             style="height: 100%; width: 100%;">
             <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
-                style="stroke: none; fill: #e8e8e8;"></path>
-            </svg>
+                style="stroke: none; fill: #e8e8e8;"></path>            </svg>
         </div>
     </header>
 
@@ -47,46 +45,54 @@
     <main class="site-page">
         <!-- Gallery Section-->
         <section class="gallery">
-            <div class="gallery__container">
+            <div class="gallery__container" id="gallery">
 
                 <!-- Gallery Item -->
                 <article class="gallery__item">
-                    <img src="./dist/assets/images/example (1).jpeg" alt="">
+                    <!-- <img src="./dist/assets/images/example (1).jpeg" alt=""> -->
+                    <h2 class="gallery__item--title">Imagen 1</h2>
                 </article>
 
                 <!-- Gallery Item -->
                 <article class="gallery__item">
-                    <img src="./dist/assets/images/example (2).jpeg" alt="">
+                    <!-- <img src="./dist/assets/images/example (2).jpeg" alt=""> -->
+                    <h2 class="gallery__item--title">Imagen 2</h2>
                 </article>
 
                 <!-- Gallery Item -->
                 <article class="gallery__item">
-                    <img src="./dist/assets/images/example (3).jpeg" alt="">
+                    <!-- <img src="./dist/assets/images/example (3).jpeg" alt=""> -->
+                    <h2 class="gallery__item--title">Imagen 3</h2>
                 </article>
 
                 <!-- Gallery Item -->
                 <article class="gallery__item">
-                    <img src="./dist/assets/images/example (4).jpeg" alt="">
+                    <!-- <img src="./dist/assets/images/example (4).jpeg" alt=""> -->
+                    <h2 class="gallery__item--title">Imagen 4</h2>
                 </article>
 
                 <!-- Gallery Item -->
                 <article class="gallery__item">
-                    <img src="./dist/assets/images/example (5).jpeg" alt="">
+                    <!-- <img src="./dist/assets/images/example (5).jpeg" alt=""> -->
+                    <h2 class="gallery__item--title">Imagen 5</h2>
                 </article>
 
                 <!-- Gallery Item -->
                 <article class="gallery__item">
-                    <img src="./dist/assets/images/example (6).jpeg" alt="">
+                    <!-- <img src="./dist/assets/images/example (6).jpeg" alt=""> -->
+                    <h2 class="gallery__item--title">Imagen 6</h2>
                 </article>
 
                 <!-- Gallery Item -->
                 <article class="gallery__item">
-                    <img src="./dist/assets/images/example (7).jpeg" alt="">
+                    <!-- <img src="./dist/assets/images/example (7).jpeg" alt=""> -->
+                    <h2 class="gallery__item--title">Imagen 7</h2>
                 </article>
 
                 <!-- Gallery Item -->
                 <article class="gallery__item">
-                    <img src="./dist/assets/images/example (8).jpeg" alt="">
+                    <!-- <img src="./dist/assets/images/example (8).jpeg" alt=""> -->
+                    <h2 class="gallery__item--title">Imagen 8</h2>
                 </article>
 
             </div>
@@ -99,5 +105,6 @@
             <h6 class="footer__copyright--text">&copy; PhotoSearch 2022 - Todos los derechos reservados</h6>
         </section>
     </footer>
+    <script src="dist/script.js"></script>
 </body>
 </html>

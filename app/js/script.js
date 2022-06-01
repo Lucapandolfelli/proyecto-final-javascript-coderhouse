@@ -39,6 +39,16 @@ const validateSearch = (word) => {
     }
 }
 
+let gallery = document.getElementById('gallery');
+
+// Creamos una función que nos permita eliminar todos los hijos de un elemento.
+const removeAllChild = (parent) => {
+    // Evalua que mientras tenga hijos, los va a eliminar.
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
 // Creamos una función que nos permita saber si lo que ingresa el usuario coincide de alguna forma con el atributo 'Alt' de alguna foto. 
 const filterPhotos = (word) => {
     // Filtramos el array de objetos para ver si la palabra buscada se encuentra en el alt de la foto. 
@@ -50,28 +60,37 @@ const filterPhotos = (word) => {
     if (filteredPhotos.length == 0){
         alert('No se pudo encontrar ninguna foto relacionada a su búsqueda.');
     } else{
-        // Y si matcheó simplemente devolvemos el objeto(la foto). 
-        /* for (const photo of filteredPhotos){
-            console.log(photo);
-        } */
+        // Eliminamos todas las fotos de la gelería.
+        removeAllChild(gallery);
 
-        // Aplicando la función 'forEach' de orden superior.
+        // Aplicando la función 'forEach' de orden superior. Por cada foto filtrada devolvemos un nuevo elemento para la galería.
         filteredPhotos.forEach((photo) => {
-            console.log(photo);
+            // Creamos un nuevo elemento article.
+            let newGalleryItem = document.createElement('article');
+            // Le asignamos la clase que traían los elementos antes de ejecutarse la búsqueda.
+            newGalleryItem.classList.add('gallery__item')
+            // Y le ponemos en el h2 el atributo 'alt' de la/las fotos filtradas.
+            newGalleryItem.innerHTML = `<h2>${photo.alt}</h2>`;
+            // Y por último le agregamos ese nuevo elemento a la galería. Utilicé el 'prepend' ya que quiero que se agregue al principio, para respetar el orden que simulo en el array.
+            gallery.prepend(newGalleryItem);
         });
     }
 }
 
-while(true){
-    // A traves de prompt pedimos el ingreso de una palabra o una frase.
-    let search = prompt('Introduzca lo que desee buscar:');
-    // Validamos si el resultado es 'true' o 'false'.
-    if (validateSearch(search) == true){
-        // Cuando sea 'true', llamamos a la función que filtra.
-        filterPhotos(search);
-        break;
-    } else{
-        // Cuando es 'false', lanzamos la alerta de que no cumple la condición.
-        alert('Debe introducir una palabra mayor a 3 letras');
+// IMPORTANTE. Mantengo el prompt ya que necesito si o si los eventos para poder leer el input y devolver las fotos.
+// Tuve que poner esto ya que, a pesar que todavia no lo vimos, me molestaba bastante que no me cargue la página sino interactuaba con el prompt.
+window.onload = () => {
+    while(true){
+        // A traves de prompt pedimos el ingreso de una palabra o una frase.
+        let search = prompt('Introduzca lo que desee buscar:');
+        // Validamos si el resultado es 'true' o 'false'.
+        if (validateSearch(search) == true){
+            // Cuando sea 'true', llamamos a la función que filtra.
+            filterPhotos(search);
+            break;
+        } else{
+            // Cuando es 'false', lanzamos la alerta de que no cumple la condición.
+            alert('Debe introducir una palabra mayor a 3 letras');
+        }
     }
 }

@@ -32,6 +32,8 @@
         background-color: $clr--primary--1;
         border-radius: .25rem;
         overflow: hidden;
+        background-color: $clr--dark--100;
+        @include flex(center, center, row);
 
         @include mq-down(medium){
             height: 250px;
@@ -45,6 +47,10 @@
 
         &:hover{
             cursor: pointer;
+        }
+
+        h2{
+            color: $clr--light--400;
         }
 
         img{
