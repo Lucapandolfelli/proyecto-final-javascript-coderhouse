@@ -50,6 +50,18 @@ const removeAllChild = (parent) => {
     }
 }
 
+// Creamos una función que nos permita crear nuevos elementos (fotos) para la galería.
+const createNewGalleryItem = (galleryTitle) => {
+    // Creamos un nuevo elemento article.
+    let newGalleryItem = document.createElement('article');
+    // Le asignamos la clase que define los estilos que poseerán las fotos.
+    newGalleryItem.classList.add('gallery__item');
+    // Y le ponemos lo que el usuario quiera mostrar.
+    newGalleryItem.innerHTML = galleryTitle;
+    // Y por último le agregamos ese nuevo elemento a la galería. Utilicé el 'prepend' ya que quiero que se agregue al principio, para respetar el orden que simulo en el array.
+    galleryContainer.prepend(newGalleryItem);
+}
+
 // Creamos una función que nos permita saber si lo que ingresa el usuario coincide de alguna forma con el atributo 'Alt' de alguna foto. 
 const filterPhotos = (search) => {
     // Filtramos el array de objetos para ver si la palabra buscada se encuentra en el alt de la foto. 
@@ -67,14 +79,8 @@ const filterPhotos = (search) => {
 
         // Aplicando la función 'forEach' de orden superior. Por cada foto filtrada devolvemos un nuevo elemento para la galería.
         filteredPhotos.forEach((photo) => {
-            // Creamos un nuevo elemento article.
-            let newGalleryItem = document.createElement('article');
-            // Le asignamos la clase que define los estilos que poseerán las fotos.
-            newGalleryItem.classList.add('gallery__item')
-            // Y le ponemos en el h2 el atributo 'alt' de la/las fotos filtradas.
-            newGalleryItem.innerHTML = `<h2>${photo.alt}</h2>`;
-            // Y por último le agregamos ese nuevo elemento a la galería. Utilicé el 'prepend' ya que quiero que se agregue al principio, para respetar el orden que simulo en el array.
-            galleryContainer.prepend(newGalleryItem);
+            // Llamamos la función que crea un nuevo elemento de la galería.
+            createNewGalleryItem(`<h2>${photo.alt}</h2>`);
         });
     }
 }
@@ -83,14 +89,8 @@ const filterPhotos = (search) => {
 // Creamos una función que al cargarse la página simule que se trajeron fotos aleatoriamente. La misma cargará 8 fotos.
 const loadInitialRandomPhotos = () => {
     for (let i=0; i > 7; i++){
-        // Creamos un nuevo elemento article.
-        let galleryItem = document.createElement('article');
-        // Le asignamos la clase que define los estilos que poseerán las fotos.
-        galleryItem.classList.add('gallery__item')
-        // Y le ponemos en el h2 el nombre de 'Foto' y entre paréntesis el número de foto. Ejemplo 'Foto(1)'.
-        galleryItem.innerHTML = `<h2>Foto(${i})</h2>`;
-        // Y por último le agregamos ese nuevo elemento a la galería. Utilicé el 'prepend' ya que quiero que se agregue al principio, para respetar el orden que simulo en el array.
-        galleryContainer.prepend(galleryItem);
+        // Llamamos la función que crea un nuevo elemento de la galería.
+        createNewGalleryItem(`<h2>Foto(${i})</h2>`);
     }
 }
 
