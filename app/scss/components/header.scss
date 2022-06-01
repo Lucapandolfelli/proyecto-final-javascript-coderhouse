@@ -74,11 +74,11 @@ header{
 
                             &.fa{
                                 &-moon{
-                                    color: pink;
+                                    color: #fadadd;
                                 }
 
                                 &-sun{
-                                    color: yellow;
+                                    color: #f8f1ae;
                                 }
                             }
                         }
@@ -90,6 +90,7 @@ header{
                             position: absolute;
                             border-radius: 50%;
                             transition: transform 0.2s linear;
+                            cursor: pointer;
                         }
                     }
                 }

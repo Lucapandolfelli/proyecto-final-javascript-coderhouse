@@ -40,6 +40,7 @@ const validateSearch = (word) => {
 }
 
 let gallery = document.getElementById('gallery');
+let galleryContainer = document.getElementById('galleryContainer');
 
 // Creamos una función que nos permita eliminar todos los hijos de un elemento.
 const removeAllChild = (parent) => {
@@ -58,10 +59,11 @@ const filterPhotos = (search) => {
     Comprobamos si el array está vacío, es decir, que la plabra buscada no matcheó con ningún objeto de nuestro array(simulador de base de datos). 
     */
     if (filteredPhotos.length == 0){
-        alert('No se pudo encontrar ninguna foto relacionada a su búsqueda.');
+        // Mostramos que ocurrió un error mediante un h2.
+        gallery.innerHTML = `<h2>No se pudo encontrar ninguna foto relacionada a "${search}".</h2>`;
     } else{
         // Eliminamos todas las fotos de la gelería.
-        removeAllChild(gallery);
+        removeAllChild(galleryContainer);
 
         // Aplicando la función 'forEach' de orden superior. Por cada foto filtrada devolvemos un nuevo elemento para la galería.
         filteredPhotos.forEach((photo) => {
@@ -72,11 +74,12 @@ const filterPhotos = (search) => {
             // Y le ponemos en el h2 el atributo 'alt' de la/las fotos filtradas.
             newGalleryItem.innerHTML = `<h2>${photo.alt}</h2>`;
             // Y por último le agregamos ese nuevo elemento a la galería. Utilicé el 'prepend' ya que quiero que se agregue al principio, para respetar el orden que simulo en el array.
-            gallery.prepend(newGalleryItem);
+            galleryContainer.prepend(newGalleryItem);
         });
     }
 }
 
+// Por algún motivo que desconozco no pude hacer funcionar esta función.
 // Creamos una función que al cargarse la página simule que se trajeron fotos aleatoriamente. La misma cargará 8 fotos.
 const loadInitialRandomPhotos = () => {
     for (let i=0; i > 7; i++){
@@ -87,7 +90,7 @@ const loadInitialRandomPhotos = () => {
         // Y le ponemos en el h2 el nombre de 'Foto' y entre paréntesis el número de foto. Ejemplo 'Foto(1)'.
         galleryItem.innerHTML = `<h2>Foto(${i})</h2>`;
         // Y por último le agregamos ese nuevo elemento a la galería. Utilicé el 'prepend' ya que quiero que se agregue al principio, para respetar el orden que simulo en el array.
-        gallery.prepend(galleryItem);
+        galleryContainer.prepend(galleryItem);
     }
 }
 
