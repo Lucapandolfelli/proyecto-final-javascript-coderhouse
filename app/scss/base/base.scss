@@ -16,6 +16,7 @@ h1{
     @extend .container;
     margin-top: 3rem;
     margin-bottom: 5rem;
+    min-height: 10vh;
 
     @include mq-down(small){
         margin-block: 3rem;
