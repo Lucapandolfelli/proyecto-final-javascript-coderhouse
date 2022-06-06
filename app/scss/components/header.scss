@@ -133,11 +133,20 @@ header{
                     }
                 }
 
-                i{
+                .fa-magnifying-glass{
                     position: absolute;
                     top: 30%;
-                    left: 1rem;
                     color: $clr--primary--1;
+                    left: 1rem;
+                }
+
+                .fa-xmark{
+                    display: none;
+                    position: absolute;
+                    top: 33%;
+                    color: $clr--primary--1;
+                    right: 2rem;
+                    cursor: pointer;
                 }
             }
         }

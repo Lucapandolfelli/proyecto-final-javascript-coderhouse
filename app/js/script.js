@@ -39,6 +39,9 @@ const validateSearch = (word) => {
     }
 }
 
+let inputSearch = document.querySelector('input');
+let clearInputButton = document.getElementById('clearInput');
+let searchForm = document.getElementById('searchForm');
 let gallery = document.getElementById('gallery');
 let galleryContainer = document.getElementById('galleryContainer');
 
@@ -87,27 +90,27 @@ const filterPhotos = (search) => {
 
 // Por algún motivo que desconozco no pude hacer funcionar esta función.
 // Creamos una función que al cargarse la página simule que se trajeron fotos aleatoriamente. La misma cargará 8 fotos.
-const loadInitialRandomPhotos = () => {
+const getInitialRandomPhotos = () => {
     for (let i=0; i > 7; i++){
         // Llamamos la función que crea un nuevo elemento de la galería.
         createNewGalleryItem(`<h2>Foto(${i})</h2>`);
     }
 }
 
-// IMPORTANTE. Mantengo el prompt ya que necesito si o si los eventos para poder leer el input y devolver las fotos.
-// Tuve que poner esto ya que, a pesar que todavia no lo vimos, me molestaba bastante que no me cargue la página sino interactuaba con el prompt.
-window.onload = () => {
-    while(true){
-        // A traves de prompt pedimos el ingreso de una palabra o una frase.
-        let search = prompt('Introduzca lo que desee buscar:');
-        // Validamos si el resultado es 'true' o 'false'.
-        if (validateSearch(search) == true){
-            // Cuando sea 'true', llamamos a la función que filtra.
-            filterPhotos(search);
-            break;
-        } else{
-            // Cuando es 'false', lanzamos la alerta de que no cumple la condición.
-            alert('Debe introducir una palabra mayor a 3 letras');
-        }
+searchForm.addEventListener('submit', (e) => {
+    getSearchedPhotos(e);
+});
+
+const getSearchedPhotos = (e) => {
+    e.preventDefault();
+    let inputSearch = e.target.querySelector('input');
+    const userSearch = inputSearch.value;
+    if (validateSearch(userSearch) === true){
+        // Cuando sea 'true', llamamos a la función que filtra.
+        filterPhotos(userSearch);
+    } else{
+        // Cuando es 'false', lanzamos la alerta de que no cumple la condición.
+        alert('Debe introducir una palabra mayor a 3 letras');
     }
 }
+
