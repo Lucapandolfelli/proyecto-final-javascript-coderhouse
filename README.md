@@ -12,6 +12,8 @@ Continuando con el simulador, al mismo se le agregó funcionalidades própias de
 
 Además, cuando no se encontraron fotos a partir del ingreso, se notifica mediante un texto en la página, cuando antes se lo hacía mediante un alert.
 
+Como último pero no menos importante, añadí un toggle button para proximamente crear la funcionalidad para cambiar entre el tema de la página (lightmode y darkmode). Actualmente sólo está hecho con CSS sin nada de funcionalidad. 
+
 Puede ver el simulador funcionando [aquí](https://lucapandolfelli.github.io/proyecto-final-javascript-coderhouse/).
 
 Todavía queda mucho por mejorar del simulador, utilizando los eventos de Javascript.
