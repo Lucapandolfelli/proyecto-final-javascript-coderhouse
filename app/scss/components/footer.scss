@@ -1,18 +1,18 @@
-@use '../util/colours.scss' as *;
+@use '../util/theme.scss' as *;
 @use '../util/breakpoints.scss' as *;
 
 .footer{
-    color: $clr--light--500;
-    background-color: $clr--primary--1;
+    color: var(--clr-text-footer);
+    background-color: var(--clr-bg-footer);
 
     &__content{
-        background-color: $clr--primary--1;
+        background-color: var(--clr-bg-footer);
         height: 30vh;
     }
 
     &__copyright{
-        background-color: $clr--primary--2;
-        color: $clr--light--900;
+        background-color: var(--clr-bg-footer-2);
+        color: var(--clr-title);
         padding-block: 1rem;
         display: grid;
         place-content: center;

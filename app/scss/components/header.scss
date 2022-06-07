@@ -1,11 +1,11 @@
 @use '../util/mixins.scss' as *;
 @use '../util/breakpoints.scss' as *;
-@use '../util/colours.scss' as *;
+@use '../util/theme.scss' as *;
 
 header{
     position: relative;
-    height: 50vh;
-    background-color: $clr--primary--1;
+    height: 70vh;
+    background-color: var(--clr-bg-header);
     background-size: cover;
     background-attachment: fixed;
 
@@ -19,7 +19,7 @@ header{
                 text-decoration: none;
 
                 h1{
-                    color: $clr--light--500;
+                    color: var(--clr-text-header);
                     font-size: 1.5rem;
                 }
             }
@@ -31,21 +31,21 @@ header{
                 .social-button{
                     @include flex(center, center, row);
                     text-decoration: none;
-                    background-color: $clr--primary--2;
+                    background-color: var(--clr-social-1);
                     border-radius: 50%;
                     height: 30px;
                     width: 30px;
                     transition: all .7s ease;
         
                     i{
-                        color: $clr--light--500;
+                        color: var(--clr-social-3);
                     }
     
                     &:hover{
-                        background-color: $clr--light--900;
+                        background-color: var(--clr-social-2);
                         
                         i{
-                            color: $clr--primary--2;
+                            color: var(--clr-social-1);
                         }
                     }
                 }
@@ -65,7 +65,7 @@ header{
                         width: 52px;
                         height: 30px;
                         padding: .125rem .5rem;
-                        background-color: $clr--primary--2;
+                        background-color: var(--clr-social-1);
                         border-radius: 50px;
                         position: relative;
 
@@ -86,7 +86,7 @@ header{
                         .ball{
                             width: 18px;
                             height: 18px;
-                            background-color: $clr--light--500;
+                            background-color: var(--clr-text-header);
                             position: absolute;
                             border-radius: 50%;
                             transition: transform 0.2s linear;
@@ -113,7 +113,7 @@ header{
                 text-align: center;
 
                 p{
-                    color: $clr--light--900;
+                    color: var(--clr-title);
                     font-size: 1.25rem;
                 }
             }
@@ -136,18 +136,21 @@ header{
                 .fa-magnifying-glass{
                     position: absolute;
                     top: 30%;
-                    color: $clr--primary--1;
+                    color: var(--clr-bg-header);
                     left: 1rem;
                 }
 
                 .fa-xmark{
-                    display: none;
                     position: absolute;
                     top: 33%;
-                    color: $clr--primary--1;
+                    color: var(--clr-bg-header);
                     right: 2rem;
                     cursor: pointer;
                 }
+            }
+
+            &--error{
+                color: red;
             }
         }
     }

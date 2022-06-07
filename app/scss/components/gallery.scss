@@ -1,4 +1,4 @@
-@use '../util/colours.scss' as *;
+@use '../util/theme.scss' as *;
 @use '../util/mixins.scss' as *;
 @use '../util/breakpoints.scss' as *;
 
@@ -29,10 +29,9 @@
     &__item{
         height: 300px;
         width: 300px;
-        background-color: $clr--primary--1;
         border-radius: .25rem;
         overflow: hidden;
-        background-color: $clr--dark--100;
+        background-color: var(--clr-bg-gallery);
         @include flex(center, center, row);
 
         @include mq-down(medium){
@@ -50,7 +49,7 @@
         }
 
         h2{
-            color: $clr--light--400;
+            color: var(--clr-text-gallery);
         }
 
         img{

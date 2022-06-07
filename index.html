@@ -18,12 +18,12 @@
     <header>
         <div class="topbar">
            <div class="container">
-                <a class="topbar-logo" href="#"><h1>PhotoSearch</h1></a>
+                <a class="topbar-logo" href="/"><h1>PhotoSearch</h1></a>
                 <div class="topbar-right">
                     <a class="social-button" href="https://github.com/Lucapandolfelli/proyecto-final-javascript-coderhouse" target="_blank"><i class="fa-brands fa-github"></i></a>
                     <div class="theme-mode-toggle">
-                        <input type="checkbox" class="checkbox" id="checkbox">
-                        <label for="checkbox" class="label">
+                        <input type="checkbox" class="checkbox" id="toggleTheme">
+                        <label for="toggleTheme" class="label">
                             <i class="fas fa-moon"></i>
                             <i class='fas fa-sun'></i>
                             <div class='ball'>
@@ -38,17 +38,18 @@
                     <p>Introduzca lo que desee buscar.</p>
                 </div>
                 <form class="banner__content--search" id="searchForm">
-                    <input type="text" placeholder="Buscar..." autofocus />
+                    <input type="text" placeholder="Buscar..." autofocus id="searchInput"/>
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <i class="fa-solid fa-xmark" id="clearInput"></i>
                 </form>
+                <span class="banner__content--error" id="errorAlert"></span>
             </div>
         </div>
         <div class="wave">
             <svg viewBox="0 0 500 150" preserveAspectRatio="none"
             style="height: 100%; width: 100%;">
             <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
-                style="stroke: none; fill: #e8e8e8;"></path>            </svg>
+                style="stroke: none; fill: var(--clr-bg-body);"></path>            </svg>
         </div>
     </header>
 
@@ -57,54 +58,6 @@
         <!-- Gallery Section-->
         <section class="gallery" id="gallery">
             <div class="gallery__container" id="galleryContainer">
-
-                <!-- Gallery Item -->
-                <article class="gallery__item">
-                    <!-- <img src="./dist/assets/images/example (1).jpeg" alt=""> -->
-                    <h2 class="gallery__item--title">Imagen 1</h2>
-                </article>
-
-                <!-- Gallery Item -->
-                <article class="gallery__item">
-                    <!-- <img src="./dist/assets/images/example (2).jpeg" alt=""> -->
-                    <h2 class="gallery__item--title">Imagen 2</h2>
-                </article>
-
-                <!-- Gallery Item -->
-                <article class="gallery__item">
-                    <!-- <img src="./dist/assets/images/example (3).jpeg" alt=""> -->
-                    <h2 class="gallery__item--title">Imagen 3</h2>
-                </article>
-
-                <!-- Gallery Item -->
-                <article class="gallery__item">
-                    <!-- <img src="./dist/assets/images/example (4).jpeg" alt=""> -->
-                    <h2 class="gallery__item--title">Imagen 4</h2>
-                </article>
-
-                <!-- Gallery Item -->
-                <article class="gallery__item">
-                    <!-- <img src="./dist/assets/images/example (5).jpeg" alt=""> -->
-                    <h2 class="gallery__item--title">Imagen 5</h2>
-                </article>
-
-                <!-- Gallery Item -->
-                <article class="gallery__item">
-                    <!-- <img src="./dist/assets/images/example (6).jpeg" alt=""> -->
-                    <h2 class="gallery__item--title">Imagen 6</h2>
-                </article>
-
-                <!-- Gallery Item -->
-                <article class="gallery__item">
-                    <!-- <img src="./dist/assets/images/example (7).jpeg" alt=""> -->
-                    <h2 class="gallery__item--title">Imagen 7</h2>
-                </article>
-
-                <!-- Gallery Item -->
-                <article class="gallery__item">
-                    <!-- <img src="./dist/assets/images/example (8).jpeg" alt=""> -->
-                    <h2 class="gallery__item--title">Imagen 8</h2>
-                </article>
 
             </div>
         </section>
@@ -117,5 +70,6 @@
         </section>
     </footer>
     <script src="dist/script.js"></script>
+    <script src="dist/toggleTheme.js"></script>
 </body>
 </html>

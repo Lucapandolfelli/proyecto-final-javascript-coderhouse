@@ -27,7 +27,12 @@ const photos = [
     new Photo(generateId(), 'ejemploURL', 'ejemploSRC', 'Jose Molina', 'Persona en montaña')
 ];
 
-console.table(photos);
+let errorAlert = document.getElementById('errorAlert');
+let inputSearch = document.querySelector('input');
+let clearInputButton = document.getElementById('clearInput');
+let searchForm = document.getElementById('searchForm');
+let gallery = document.getElementById('gallery');
+let galleryContainer = document.getElementById('galleryContainer');
 
 // Creamos una función que nos permita validar si lo que ingresa el usuario cumple el requisito especificado. Si no lo cumple devuelve 'false', y si lo cumple devuelve 'true'. 
 const validateSearch = (word) => {
@@ -38,12 +43,6 @@ const validateSearch = (word) => {
         return true;
     }
 }
-
-let inputSearch = document.querySelector('input');
-let clearInputButton = document.getElementById('clearInput');
-let searchForm = document.getElementById('searchForm');
-let gallery = document.getElementById('gallery');
-let galleryContainer = document.getElementById('galleryContainer');
 
 // Creamos una función que nos permita eliminar todos los hijos de un elemento.
 const removeAllChild = (parent) => {
@@ -88,17 +87,23 @@ const filterPhotos = (search) => {
     }
 }
 
-// Por algún motivo que desconozco no pude hacer funcionar esta función.
 // Creamos una función que al cargarse la página simule que se trajeron fotos aleatoriamente. La misma cargará 8 fotos.
 const getInitialRandomPhotos = () => {
-    for (let i=0; i > 7; i++){
+    for (let i=1; i <= 8; i++){
         // Llamamos la función que crea un nuevo elemento de la galería.
-        createNewGalleryItem(`<h2>Foto(${i})</h2>`);
+        createNewGalleryItem(`<h2>Foto ${i}</h2>`);
     }
 }
 
 searchForm.addEventListener('submit', (e) => {
     getSearchedPhotos(e);
+});
+
+clearInputButton.addEventListener('click', () => {
+    document.getElementById('searchInput').value = '';
+    removeAllChild(galleryContainer);
+    getInitialRandomPhotos();
+    errorAlert.innerText = '';
 });
 
 const getSearchedPhotos = (e) => {
@@ -108,9 +113,22 @@ const getSearchedPhotos = (e) => {
     if (validateSearch(userSearch) === true){
         // Cuando sea 'true', llamamos a la función que filtra.
         filterPhotos(userSearch);
+        errorAlert.innerText = '';
     } else{
-        // Cuando es 'false', lanzamos la alerta de que no cumple la condición.
-        alert('Debe introducir una palabra mayor a 3 letras');
+        // Cuando es 'false', avisamos el error.
+        errorAlert.innerText = 'Debe introducir una palabra mayor a 3 letras';
     }
 }
+
+window.addEventListener('load', () => {
+    getInitialRandomPhotos();
+});
+
+// Toggle theme functionality
+
+let toggleTheme = document.getElementById('toggleTheme');
+
+toggleTheme.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+});
 
