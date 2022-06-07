@@ -8,12 +8,10 @@ Utilizando la api de [Pexels](https://www.pexels.com/es-es/api/), la cual básic
 Incluso cada item que devuelve la api cuenta con el nombre del fotográfo que tomó la foto, por lo que se mostrará esa información mediante un modal al hacer click sobre una imagen.
 
 ## Simulador
-Continuando con el simulador, al mismo se le agregó funcionalidades própias del DOM de Javascript. Ahora, en lugar de devolver el o los objetos por consola cuando matcheaba lo ingresado con el atributo 'alt' de alguna foto, devuelve a traves del DOM los items correspondientes. Previo a devolverlos, elimina los que ya se encontraban antes, los cuales representan fotos aleatorias que se muestran cuando no se buscó nada.
+Se siguió mejorando el simulador a apartir de la implementación de los eventos de Javascript. El formulario de búsqueda ya funciona como debería, además de contar con la validación del mismo pero ahora con resultados en el HTML y no con el alert. También se añadió funcionalidad para limpiar la barra de búsqueda.
 
-Además, cuando no se encontraron fotos a partir del ingreso, se notifica mediante un texto en la página, cuando antes se lo hacía mediante un alert.
-
-Como último pero no menos importante, añadí un toggle button para proximamente crear la funcionalidad para cambiar entre el tema de la página (lightmode y darkmode). Actualmente sólo está hecho con CSS sin nada de funcionalidad. 
+Por otra parte, el botón para cambiar entre temas funciona correctamente, unicamente falta guardar el estado en el local storage para que se mantenga cuando se recarga la página.
 
 Puede ver el simulador funcionando [aquí](https://lucapandolfelli.github.io/proyecto-final-javascript-coderhouse/).
 
-Todavía queda mucho por mejorar del simulador, utilizando los eventos de Javascript.
+
