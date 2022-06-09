@@ -127,8 +127,30 @@ window.addEventListener('load', () => {
 // Toggle theme functionality
 
 let toggleTheme = document.getElementById('toggleTheme');
+let ball = document.getElementById('ball');
+let theme = localStorage.getItem('theme');
+
+const enableDarkTheme = () => {
+    document.body.classList.add('dark-theme');
+    localStorage.setItem('theme', 'darkTheme');
+    ball.style.transform = 'translateX(20px)';
+}
+
+const disableDarkTheme = () => {
+    document.body.classList.remove('dark-theme');
+    localStorage.setItem('theme', 'normal');
+    ball.style.transform = 'translateX(0)';
+}
+
+if (theme === 'darkTheme'){
+    enableDarkTheme()
+}
 
 toggleTheme.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
+    if (theme != 'darkTheme'){
+        enableDarkTheme();
+    }else{
+        disableDarkTheme();
+    }
 });
 
