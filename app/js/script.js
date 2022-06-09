@@ -95,10 +95,12 @@ const getInitialRandomPhotos = () => {
     }
 }
 
+// Eveneto submit del form, donde se llama a una función que trae las fotos a partir de la búsqueda.
 searchForm.addEventListener('submit', (e) => {
     getSearchedPhotos(e);
 });
 
+// Botón para limpiar el input del form.
 clearInputButton.addEventListener('click', () => {
     document.getElementById('searchInput').value = '';
     removeAllChild(galleryContainer);
@@ -106,20 +108,26 @@ clearInputButton.addEventListener('click', () => {
     errorAlert.innerText = '';
 });
 
+// Creamos una función que nos permita tomar lo que el usuario ingresa en la barra de búsqueda y fijarnos si matchea con alguna de las fotos que tenemos guardadas en el array (simulador de base de datos).
 const getSearchedPhotos = (e) => {
+    // Evitamos el funcionamiento por defualt del evento submit.
     e.preventDefault();
+    // Tomamos al input del form y lo almacenamos.
     let inputSearch = e.target.querySelector('input');
+    // Y también guardamos el value en otra.
     const userSearch = inputSearch.value;
+    // Validamos el value del input.
     if (validateSearch(userSearch) === true){
         // Cuando sea 'true', llamamos a la función que filtra.
         filterPhotos(userSearch);
         errorAlert.innerText = '';
     } else{
-        // Cuando es 'false', avisamos el error.
+        // Cuando sea 'false', avisamos el error.
         errorAlert.innerText = 'Debe introducir una palabra mayor a 3 letras';
     }
 }
 
+// Cuando se carge la ventana, llamamos a la función que nos carga 8 fotos simulando que son fotos aleatorias.
 window.addEventListener('load', () => {
     getInitialRandomPhotos();
 });
