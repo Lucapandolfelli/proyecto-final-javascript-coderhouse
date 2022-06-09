@@ -130,12 +130,14 @@ let toggleTheme = document.getElementById('toggleTheme');
 let ball = document.getElementById('ball');
 let theme = localStorage.getItem('theme');
 
+// Creamos una función que nos permita habiltar el tema oscuro de la página, agregando la clase correspondiente al body y seteando el local storage para guardar el modo.
 const enableDarkTheme = () => {
     document.body.classList.add('dark-theme');
     localStorage.setItem('theme', 'darkTheme');
     ball.style.transform = 'translateX(20px)';
 }
 
+// Creamos una función que nos permita deshabiltar el tema oscuro de la página, removiendo la clase al body y seteando el local storage para guardar el modo.
 const disableDarkTheme = () => {
     document.body.classList.remove('dark-theme');
     localStorage.setItem('theme', 'normal');
@@ -146,6 +148,7 @@ if (theme === 'darkTheme'){
     enableDarkTheme()
 }
 
+// Cuando se aplique el evento click al botón toggle, si el local storage 'theme' no es 'darkTheme', lo habilitamos y sino lo deshabilitamos.
 toggleTheme.addEventListener('click', () => {
     if (theme != 'darkTheme'){
         enableDarkTheme();
