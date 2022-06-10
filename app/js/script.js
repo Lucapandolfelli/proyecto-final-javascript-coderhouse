@@ -153,11 +153,15 @@ const disableDarkTheme = () => {
 }
 
 if (theme === 'darkTheme'){
-    enableDarkTheme()
+    enableDarkTheme();
+}else{
+    disableDarkTheme();
 }
 
 // Cuando se aplique el evento click al botón toggle, si el local storage 'theme' no es 'darkTheme', lo habilitamos y sino lo deshabilitamos.
 toggleTheme.addEventListener('click', () => {
+    // Actualizamos el local storage cuando se hace click.
+    theme = localStorage.getItem('theme');
     if (theme != 'darkTheme'){
         enableDarkTheme();
     }else{
