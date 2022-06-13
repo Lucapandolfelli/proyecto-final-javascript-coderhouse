@@ -3,6 +3,11 @@
 @use '../util/breakpoints.scss' as *;
 
 .gallery{
+
+    h2{
+        color: var(--clr-h2-gallery);
+    }
+
     &__container{
         display: grid;
         grid-template-columns: repeat(4, 300px);

@@ -9,7 +9,7 @@ class Photo {
         this.src = src; // URL de la imagen para ser utilizada en nuestro proyecto.
         this.photographer = photographer; // Nombre del fotografo.
         this.alt = alt; // Texto descriptivo de la imagen el cual usa la API para filtrar y devolver resultados de búsqueda.
-    }    
+    }
 }
 
 // Creamos una función para generar Id's aleatorios. 
