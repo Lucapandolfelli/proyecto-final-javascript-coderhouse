@@ -20,11 +20,11 @@ const generateId = () => {
 
 // Creamos un array que simule la base de datos donde se almacenan las fotos. 
 const photos = [
-    new Photo(generateId(), 'ejemploURL', 'ejemploSRC', 'Jose Molina', 'Caballos en montaña'),
-    new Photo(generateId(), 'ejemploURL', 'ejemploSRC', 'Ignacio Fernandez', 'Gato saltando'),
-    new Photo(generateId(), 'ejemploURL', 'ejemploSRC', 'Martin Caro', 'Autos de Formula 1'),
-    new Photo(generateId(), 'ejemploURL', 'ejemploSRC', 'Beatriz Quiroga', 'Buenos Aires'),
-    new Photo(generateId(), 'ejemploURL', 'ejemploSRC', 'Jose Molina', 'Persona en montaña')
+    new Photo(generateId(), 'ejemploURL', '/dist/assets/images/caballomontaña.jpg', 'Jose Molina', 'Caballos en montaña'),
+    new Photo(generateId(), 'ejemploURL', '/dist/assets/images/gatosaltando.jpg', 'Ignacio Fernandez', 'Gato saltando'),
+    new Photo(generateId(), 'ejemploURL', '/dist/assets/images/formula1.jpg', 'Martin Caro', 'Autos de Formula 1'),
+    new Photo(generateId(), 'ejemploURL', '/dist/assets/images/buenosaires.jpg', 'Beatriz Quiroga', 'Buenos Aires'),
+    new Photo(generateId(), 'ejemploURL', '/dist/assets/images/personamontaña.jpg', 'Jose Molina', 'Persona en montaña')
 ];
 
 let errorAlert = document.getElementById('errorAlert');
@@ -82,7 +82,7 @@ const filterPhotos = (search) => {
         // Aplicando la función 'forEach' de orden superior. Por cada foto filtrada devolvemos un nuevo elemento para la galería.
         filteredPhotos.forEach((photo) => {
             // Llamamos la función que crea un nuevo elemento de la galería.
-            createNewGalleryItem(`<h2>${photo.alt}</h2>`);
+            createNewGalleryItem(`<img src="${photo.src}" alt="${photo.alt}"></img>`);
         });
     }
 }
@@ -91,7 +91,7 @@ const filterPhotos = (search) => {
 const getInitialRandomPhotos = () => {
     for (let i=1; i <= 8; i++){
         // Llamamos la función que crea un nuevo elemento de la galería.
-        createNewGalleryItem(`<h2>Foto ${i}</h2>`);
+        createNewGalleryItem(`<img src="/dist/assets/images/example (${i}).jpeg" alt="Foto(${i})"></img>`);
     }
 }
 

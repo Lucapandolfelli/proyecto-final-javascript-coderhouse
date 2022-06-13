@@ -9,6 +9,10 @@ header{
     background-size: cover;
     background-attachment: fixed;
 
+    @include mq-down(small){
+        height: 50vh;
+    }
+
     .topbar{
         padding-block: 1rem;
 
@@ -93,6 +97,10 @@ header{
         place-items: center;
         width: 100%;
         height: calc(100% - 225px);
+
+        @include mq-down(small){
+            height: calc(100% - 118px);
+        }
 
         &__content{
             width: min(100% - 5rem, 500px);
