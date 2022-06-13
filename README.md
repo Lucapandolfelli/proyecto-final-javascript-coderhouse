@@ -8,9 +8,7 @@ Utilizando la api de [Pexels](https://www.pexels.com/es-es/api/), la cual básic
 Incluso cada item que devuelve la api cuenta con el nombre del fotográfo que tomó la foto, por lo que se mostrará esa información mediante un modal al hacer click sobre una imagen.
 
 ## Simulador
-Se siguió mejorando el simulador a apartir de la implementación de los eventos de Javascript. El formulario de búsqueda ya funciona como debería, además de contar con la validación del mismo pero ahora con resultados en el HTML y no con el alert. También se añadió funcionalidad para limpiar la barra de búsqueda.
-
-Por otra parte, el botón para cambiar entre temas funciona correctamente, unicamente falta guardar el estado en el local storage para que se mantenga cuando se recarga la página.
+Se realizaron algunas mejoras, como la implementación de rutas de imágenes a las própias fotos de la galería. Además se añadió la funcionalidad para cambiar el tema de la página mediante la utilización del localStorage de Javascript.
 
 Puede ver el simulador funcionando [aquí](https://lucapandolfelli.github.io/proyecto-final-javascript-coderhouse/).
 
