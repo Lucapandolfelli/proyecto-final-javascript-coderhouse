@@ -11,7 +11,7 @@ class Photo {
         this.alt = alt; // Texto descriptivo de la imagen el cual usa la API para filtrar y devolver resultados de búsqueda.
     } */
     // Creamos el constructor de la clase a partir de las propiedades del objeto dado por un json de una API.
-    constructor (json){
+    constructor(json){
         Object.assign(this, json);
     }
     showModal(){
@@ -51,17 +51,7 @@ let clearInputButton = document.getElementById('clearInput');
 let searchForm = document.getElementById('searchForm');
 let gallery = document.getElementById('gallery');
 let galleryContainer = document.getElementById('galleryContainer');
-let galleryItem = document.getElementsByClassName('gallery__item');
 
-// Creamos una función que nos permita validar si lo que ingresa el usuario cumple el requisito especificado. Si no lo cumple devuelve 'false', y si lo cumple devuelve 'true'. 
-const validateSearch = (word) => {
-    // Verificamos si la palabra posee más de 3 caracteres. 
-    if (word.length < 3){
-        return false;
-    } else {
-        return true;
-    }
-}
 
 // Creamos una función que nos permita eliminar todos los hijos de un elemento.
 const removeAllChild = (parent) => {
@@ -84,6 +74,8 @@ const createNewGalleryItem = (photoObject) => {
     newGalleryItem.innerHTML = `<img src="${photo.src}" alt="${photo.alt}"></img>`;
     // Y por último le agregamos ese nuevo elemento a la galería. Utilicé el 'prepend' ya que quiero que se agregue al principio, para respetar el orden que simulo en el array.
     galleryContainer.prepend(newGalleryItem);
+    // Retornamos el objeto 'Photo' para poder utilizarlo posteriormente.
+    return photo;
 }
 
 // Creamos una función que nos permita saber si lo que ingresa el usuario coincide de alguna forma con el atributo 'Alt' de alguna foto. 
@@ -95,18 +87,23 @@ const filterPhotos = (search) => {
     Comprobamos si el array está vacío, es decir, que la plabra buscada no matcheó con ningún objeto de nuestro array(simulador de base de datos). 
     */
     if (filteredPhotos.length === 0){
-        // Mostramos que ocurrió un error mediante un h2.
-        let h2 = document.createElement('h2')
+        // Creamos un elemento h2 para poder asignarle el error.
+        let h2 = document.createElement('h2');
+        // Le asignamos el error al elemento h2.
         h2.innerText = `No se pudo encontrar ninguna foto relacionada a "${search}".`;
+        // Lo insertamos dentro de la galería pero antes del contenedor.
         gallery.insertBefore(h2, galleryContainer);
-        removeAllChild(galleryContainer)
+        // Borramos todos los hijos del contenedor.
+        removeAllChild(galleryContainer);
     } else{
         // Eliminamos todas las fotos de la gelería.
         removeAllChild(galleryContainer);
         // Aplicando la función 'forEach' de orden superior. Por cada foto filtrada devolvemos un nuevo elemento para la galería.
-        filteredPhotos.forEach((photo) => {
+        filteredPhotos.forEach((photoObject) => {
             // Llamamos la función que crea un nuevo elemento de la galería. 'photo' simula un objeto de un json que nos devuelve la API.
-            createNewGalleryItem(photo);
+            let photo = createNewGalleryItem(photoObject);
+            let galleryItem = document.querySelector('article');
+            galleryItem.addEventListener('click', () => photo.showModal());
         });
     }
 }
@@ -114,28 +111,12 @@ const filterPhotos = (search) => {
 // Creamos una función que al cargarse la página simule que se trajeron fotos aleatoriamente. La misma cargará 8 fotos.
 const getInitialRandomPhotos = (photosArray) => {
     let firstEightItems = photosArray.slice(0, 8);
-    firstEightItems.forEach((photo) => {
-        createNewGalleryItem(photo);
+    firstEightItems.forEach((photoObject) => {
+        let photo = createNewGalleryItem(photoObject);
+        let galleryItem = document.querySelector('article');
+        galleryItem.addEventListener('click', () => photo.showModal());
     });
 }
-
-// Eveneto submit del form, donde se llama a una función que trae las fotos a partir de la búsqueda.
-searchForm.addEventListener('submit', (e) => {
-    getSearchedPhotos(e);
-});
-
-// Botón para limpiar el input del form.
-clearInputButton.addEventListener('click', () => {
-    document.getElementById('searchInput').value = '';
-    if (gallery.childNodes.length == 3){
-        removeAllChild(galleryContainer);
-        getInitialRandomPhotos(apiPhotos);
-    }else{
-        gallery.childNodes[1].remove();
-        getInitialRandomPhotos(apiPhotos);
-    }
-});
-
 
 // Creamos una función que nos permita tomar lo que el usuario ingresa en la barra de búsqueda y fijarnos si matchea con alguna de las fotos que tenemos guardadas en el array (simulador de base de datos).
 const getSearchedPhotos = (e) => {
@@ -146,23 +127,48 @@ const getSearchedPhotos = (e) => {
     // Y también guardamos el value en otra.
     const userSearch = inputSearch.value;
     // Validamos el value del input.
-    if (validateSearch(userSearch) === true){
-        // Cuando sea 'true', llamamos a la función que filtra.
+    if (userSearch.length > 3){
+        // Llamamos a la función que filtra.
         filterPhotos(userSearch);
         errorAlert.innerText = '';
     } else{
-        // Cuando sea 'false', avisamos el error.
+        // Sino, avisamos el error.
         errorAlert.innerText = 'Debe introducir una palabra mayor a 3 letras.';
+        // Creamos un timer que limpie el 'errorAlert' despues de 1.5 segundos.
         setTimeout(() => {
             errorAlert.innerText = '';
         }, 1500);
     }
 }
 
+// Evento submit del form, donde se llama a una función que trae las fotos a partir de la búsqueda.
+searchForm.addEventListener('submit', (e) => getSearchedPhotos(e));
+
 // Cuando se carge la ventana, llamamos a la función que nos carga 8 fotos simulando que son fotos aleatorias.
-window.addEventListener('DOMContentLoaded', () => {
-    getInitialRandomPhotos(apiPhotos);
+document.addEventListener('DOMContentLoaded', getInitialRandomPhotos(apiPhotos));
+
+// Botón para limpiar el input del form.
+clearInputButton.addEventListener('click', () => {
+    // Limpiamos el input.
+    document.getElementById('searchInput').value = '';
+    // Cuando la galería tiene 3 hijos es porque no se tuvo que crear el h2 para error. Sino, si se tuvo que crear el h2 por lo que tiene más hijos.
+    if (gallery.childNodes.length == 3){
+        // Borra los hijos del contenedor de la galería.
+        removeAllChild(galleryContainer);
+        // Carga las fotos aleatorias del principio.
+        getInitialRandomPhotos(apiPhotos);
+    }else{
+        // Borra el h2 con el error.
+        gallery.childNodes[1].remove();
+        // Carga las fotos aleatorias del principio.
+        getInitialRandomPhotos(apiPhotos);
+    }
 });
+
+
+
+
+
 
 // Toggle theme functionality
 

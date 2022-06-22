@@ -11,7 +11,7 @@ class Photo {
         this.alt = alt; // Texto descriptivo de la imagen el cual usa la API para filtrar y devolver resultados de búsqueda.
     } */
     // Creamos el constructor de la clase a partir de las propiedades del objeto dado por un json de una API.
-    constructor (json){
+    constructor(json){
         Object.assign(this, json);
     }
     showModal(){
@@ -51,17 +51,7 @@ let clearInputButton = document.getElementById('clearInput');
 let searchForm = document.getElementById('searchForm');
 let gallery = document.getElementById('gallery');
 let galleryContainer = document.getElementById('galleryContainer');
-let galleryItem = document.getElementsByClassName('gallery__item');
 
-// Creamos una función que nos permita validar si lo que ingresa el usuario cumple el requisito especificado. Si no lo cumple devuelve 'false', y si lo cumple devuelve 'true'. 
-const validateSearch = (word) => {
-    // Verificamos si la palabra posee más de 3 caracteres. 
-    if (word.length < 3){
-        return false;
-    } else {
-        return true;
-    }
-}
 
 // Creamos una función que nos permita eliminar todos los hijos de un elemento.
 const removeAllChild = (parent) => {
@@ -84,6 +74,8 @@ const createNewGalleryItem = (photoObject) => {
     newGalleryItem.innerHTML = `<img src="${photo.src}" alt="${photo.alt}"></img>`;
     // Y por último le agregamos ese nuevo elemento a la galería. Utilicé el 'prepend' ya que quiero que se agregue al principio, para respetar el orden que simulo en el array.
     galleryContainer.prepend(newGalleryItem);
+    // Retornamos el objeto 'Photo' para poder utilizarlo posteriormente.
+    return photo;
 }
 
 // Creamos una función que nos permita saber si lo que ingresa el usuario coincide de alguna forma con el atributo 'Alt' de alguna foto. 
@@ -107,9 +99,11 @@ const filterPhotos = (search) => {
         // Eliminamos todas las fotos de la gelería.
         removeAllChild(galleryContainer);
         // Aplicando la función 'forEach' de orden superior. Por cada foto filtrada devolvemos un nuevo elemento para la galería.
-        filteredPhotos.forEach((photo) => {
+        filteredPhotos.forEach((photoObject) => {
             // Llamamos la función que crea un nuevo elemento de la galería. 'photo' simula un objeto de un json que nos devuelve la API.
-            createNewGalleryItem(photo);
+            let photo = createNewGalleryItem(photoObject);
+            let galleryItem = document.querySelector('article');
+            galleryItem.addEventListener('click', () => photo.showModal());
         });
     }
 }
@@ -117,16 +111,41 @@ const filterPhotos = (search) => {
 // Creamos una función que al cargarse la página simule que se trajeron fotos aleatoriamente. La misma cargará 8 fotos.
 const getInitialRandomPhotos = (photosArray) => {
     let firstEightItems = photosArray.slice(0, 8);
-    firstEightItems.forEach((photo) => {
-        createNewGalleryItem(photo);
+    firstEightItems.forEach((photoObject) => {
+        let photo = createNewGalleryItem(photoObject);
+        let galleryItem = document.querySelector('article');
+        galleryItem.addEventListener('click', () => photo.showModal());
     });
 }
 
+// Creamos una función que nos permita tomar lo que el usuario ingresa en la barra de búsqueda y fijarnos si matchea con alguna de las fotos que tenemos guardadas en el array (simulador de base de datos).
+const getSearchedPhotos = (e) => {
+    // Evitamos el funcionamiento por defualt del evento submit.
+    e.preventDefault();
+    // Tomamos al input del form y lo almacenamos.
+    let inputSearch = e.target.querySelector('input');
+    // Y también guardamos el value en otra.
+    const userSearch = inputSearch.value;
+    // Validamos el value del input.
+    if (userSearch.length > 3){
+        // Llamamos a la función que filtra.
+        filterPhotos(userSearch);
+        errorAlert.innerText = '';
+    } else{
+        // Sino, avisamos el error.
+        errorAlert.innerText = 'Debe introducir una palabra mayor a 3 letras.';
+        // Creamos un timer que limpie el 'errorAlert' despues de 1.5 segundos.
+        setTimeout(() => {
+            errorAlert.innerText = '';
+        }, 1500);
+    }
+}
+
 // Evento submit del form, donde se llama a una función que trae las fotos a partir de la búsqueda.
-searchForm.addEventListener('submit', (e) => {
-    // Llama a la función principal de la aplicación.
-    getSearchedPhotos(e);
-});
+searchForm.addEventListener('submit', (e) => getSearchedPhotos(e));
+
+// Cuando se carge la ventana, llamamos a la función que nos carga 8 fotos simulando que son fotos aleatorias.
+document.addEventListener('DOMContentLoaded', getInitialRandomPhotos(apiPhotos));
 
 // Botón para limpiar el input del form.
 clearInputButton.addEventListener('click', () => {
@@ -147,33 +166,9 @@ clearInputButton.addEventListener('click', () => {
 });
 
 
-// Creamos una función que nos permita tomar lo que el usuario ingresa en la barra de búsqueda y fijarnos si matchea con alguna de las fotos que tenemos guardadas en el array (simulador de base de datos).
-const getSearchedPhotos = (e) => {
-    // Evitamos el funcionamiento por defualt del evento submit.
-    e.preventDefault();
-    // Tomamos al input del form y lo almacenamos.
-    let inputSearch = e.target.querySelector('input');
-    // Y también guardamos el value en otra.
-    const userSearch = inputSearch.value;
-    // Validamos el value del input.
-    if (validateSearch(userSearch) === true){
-        // Cuando sea 'true', llamamos a la función que filtra.
-        filterPhotos(userSearch);
-        errorAlert.innerText = '';
-    } else{
-        // Cuando sea 'false', avisamos el error.
-        errorAlert.innerText = 'Debe introducir una palabra mayor a 3 letras.';
-        // Creamos un timer que limpie el 'errorAlert' despues de 1.5 segundos.
-        setTimeout(() => {
-            errorAlert.innerText = '';
-        }, 1500);
-    }
-}
 
-// Cuando se carge la ventana, llamamos a la función que nos carga 8 fotos simulando que son fotos aleatorias.
-window.addEventListener('DOMContentLoaded', () => {
-    getInitialRandomPhotos(apiPhotos);
-});
+
+
 
 // Toggle theme functionality
 
