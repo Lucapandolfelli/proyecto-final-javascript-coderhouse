@@ -31,19 +31,19 @@ const generateId = () => {
 
 // Creamos un array que simule el json que devuelve una API. Los primeros 8 elementos representan fotos random. El resto representan fotos para ser buscadas.
 const apiPhotos = [
-    {id: generateId(), url: 'ejemploURL', src: '/dist/assets/images/example (1).jpeg', photographer: '', alt: ''},
-    {id: generateId(), url: 'ejemploURL', src: '/dist/assets/images/example (2).jpeg', photographer: '', alt: ''},
-    {id: generateId(), url: 'ejemploURL', src: '/dist/assets/images/example (3).jpeg', photographer: '', alt: ''},
-    {id: generateId(), url: 'ejemploURL', src: '/dist/assets/images/example (4).jpeg', photographer: '', alt: ''},
-    {id: generateId(), url: 'ejemploURL', src: '/dist/assets/images/example (5).jpeg', photographer: '', alt: ''},
-    {id: generateId(), url: 'ejemploURL', src: '/dist/assets/images/example (6).jpeg', photographer: '', alt: ''},
-    {id: generateId(), url: 'ejemploURL', src: '/dist/assets/images/example (7).jpeg', photographer: '', alt: ''},
-    {id: generateId(), url: 'ejemploURL', src: '/dist/assets/images/example (8).jpeg', photographer: '', alt: ''},
-    {id: generateId(), url: 'ejemploURL', src: '/dist/assets/images/caballomontaña.jpg', photographer: 'Jose Molina', alt: 'Caballos en montaña'},
-    {id: generateId(), url: 'ejemploURL', src: '/dist/assets/images/gatosaltando.jpg', photographer: 'Ignacio Fernandez', alt: 'Gato saltando'},
-    {id: generateId(), url: 'ejemploURL', src: '/dist/assets/images/formula1.jpg', photographer: 'Martin Caro', alt: 'Autos de Formula 1'},
-    {id: generateId(), url: 'ejemploURL', src: '/dist/assets/images/buenosaires.jpg', photographer: 'Beatriz Quiroga', alt: 'Buenos Aires'},
-    {id: generateId(), url: 'ejemploURL', src: '/dist/assets/images/personamontaña.jpg', photographer: 'Jose Molina', alt: 'Persona en montaña'}
+    {id: generateId(), url: 'ejemploURL', src: './dist/assets/images/example (1).jpeg', photographer: '', alt: ''},
+    {id: generateId(), url: 'ejemploURL', src: './dist/assets/images/example (2).jpeg', photographer: '', alt: ''},
+    {id: generateId(), url: 'ejemploURL', src: './dist/assets/images/example (3).jpeg', photographer: '', alt: ''},
+    {id: generateId(), url: 'ejemploURL', src: './dist/assets/images/example (4).jpeg', photographer: '', alt: ''},
+    {id: generateId(), url: 'ejemploURL', src: './dist/assets/images/example (5).jpeg', photographer: '', alt: ''},
+    {id: generateId(), url: 'ejemploURL', src: './dist/assets/images/example (6).jpeg', photographer: '', alt: ''},
+    {id: generateId(), url: 'ejemploURL', src: './dist/assets/images/example (7).jpeg', photographer: '', alt: ''},
+    {id: generateId(), url: 'ejemploURL', src: './dist/assets/images/example (8).jpeg', photographer: '', alt: ''},
+    {id: generateId(), url: 'ejemploURL', src: './dist/assets/images/caballomontaña.jpg', photographer: 'Jose Molina', alt: 'Caballos en montaña'},
+    {id: generateId(), url: 'ejemploURL', src: './dist/assets/images/gatosaltando.jpg', photographer: 'Ignacio Fernandez', alt: 'Gato saltando'},
+    {id: generateId(), url: 'ejemploURL', src: './dist/assets/images/formula1.jpg', photographer: 'Martin Caro', alt: 'Autos de Formula 1'},
+    {id: generateId(), url: 'ejemploURL', src: './dist/assets/images/buenosaires.jpg', photographer: 'Beatriz Quiroga', alt: 'Buenos Aires'},
+    {id: generateId(), url: 'ejemploURL', src: './dist/assets/images/personamontaña.jpg', photographer: 'Jose Molina', alt: 'Persona en montaña'}
 ];
 
 let errorAlert = document.getElementById('errorAlert');
