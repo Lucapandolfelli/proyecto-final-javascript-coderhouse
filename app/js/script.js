@@ -15,12 +15,10 @@ class Photo {
         Object.assign(this, json);
     }
     showModal(){
-        galleryItem.addEventListener('click', () => {
-            Swal.fire({
-                imageUrl: this.src,
-                imageHeight: 500,
-                imageAlt: this.alt
-            });
+        Swal.fire({
+            imageUrl: this.src,
+            imageHeight: 500,
+            imageAlt: this.alt
         });
     }
 }
@@ -81,6 +79,7 @@ const createNewGalleryItem = (photoObject) => {
     let newGalleryItem = document.createElement('article');
     // Le asignamos la clase que define los estilos que poseerán las fotos.
     newGalleryItem.classList.add('gallery__item');
+    newGalleryItem.setAttribute('photoId',`${photo.id}`)
     // Y le ponemos una etiqueta img con los datos del objeto para que se muestren.
     newGalleryItem.innerHTML = `<img src="${photo.src}" alt="${photo.alt}"></img>`;
     // Y por último le agregamos ese nuevo elemento a la galería. Utilicé el 'prepend' ya que quiero que se agregue al principio, para respetar el orden que simulo en el array.
@@ -97,7 +96,10 @@ const filterPhotos = (search) => {
     */
     if (filteredPhotos.length === 0){
         // Mostramos que ocurrió un error mediante un h2.
-        gallery.innerHTML = `<h2>No se pudo encontrar ninguna foto relacionada a "${search}".</h2>`;
+        let h2 = document.createElement('h2')
+        h2.innerText = `No se pudo encontrar ninguna foto relacionada a "${search}".`;
+        gallery.insertBefore(h2, galleryContainer);
+        removeAllChild(galleryContainer)
     } else{
         // Eliminamos todas las fotos de la gelería.
         removeAllChild(galleryContainer);
@@ -125,9 +127,13 @@ searchForm.addEventListener('submit', (e) => {
 // Botón para limpiar el input del form.
 clearInputButton.addEventListener('click', () => {
     document.getElementById('searchInput').value = '';
-    removeAllChild(galleryContainer);
-    getInitialRandomPhotos(apiPhotos);
-    errorAlert.innerText = '';
+    if (gallery.childNodes.length == 3){
+        removeAllChild(galleryContainer);
+        getInitialRandomPhotos(apiPhotos);
+    }else{
+        gallery.childNodes[1].remove();
+        getInitialRandomPhotos(apiPhotos);
+    }
 });
 
 
@@ -146,12 +152,15 @@ const getSearchedPhotos = (e) => {
         errorAlert.innerText = '';
     } else{
         // Cuando sea 'false', avisamos el error.
-        errorAlert.innerText = 'Debe introducir una palabra mayor a 3 letras';
+        errorAlert.innerText = 'Debe introducir una palabra mayor a 3 letras.';
+        setTimeout(() => {
+            errorAlert.innerText = '';
+        }, 1500);
     }
 }
 
 // Cuando se carge la ventana, llamamos a la función que nos carga 8 fotos simulando que son fotos aleatorias.
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
     getInitialRandomPhotos(apiPhotos);
 });
 
