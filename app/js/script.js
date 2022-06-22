@@ -95,11 +95,14 @@ const filterPhotos = (search) => {
     Comprobamos si el array está vacío, es decir, que la plabra buscada no matcheó con ningún objeto de nuestro array(simulador de base de datos). 
     */
     if (filteredPhotos.length === 0){
-        // Mostramos que ocurrió un error mediante un h2.
-        let h2 = document.createElement('h2')
+        // Creamos un elemento h2 para poder asignarle el error.
+        let h2 = document.createElement('h2');
+        // Le asignamos el error al elemento h2.
         h2.innerText = `No se pudo encontrar ninguna foto relacionada a "${search}".`;
+        // Lo insertamos dentro de la galería pero antes del contenedor.
         gallery.insertBefore(h2, galleryContainer);
-        removeAllChild(galleryContainer)
+        // Borramos todos los hijos del contenedor.
+        removeAllChild(galleryContainer);
     } else{
         // Eliminamos todas las fotos de la gelería.
         removeAllChild(galleryContainer);
@@ -119,19 +122,26 @@ const getInitialRandomPhotos = (photosArray) => {
     });
 }
 
-// Eveneto submit del form, donde se llama a una función que trae las fotos a partir de la búsqueda.
+// Evento submit del form, donde se llama a una función que trae las fotos a partir de la búsqueda.
 searchForm.addEventListener('submit', (e) => {
+    // Llama a la función principal de la aplicación.
     getSearchedPhotos(e);
 });
 
 // Botón para limpiar el input del form.
 clearInputButton.addEventListener('click', () => {
+    // Limpiamos el input.
     document.getElementById('searchInput').value = '';
+    // Cuando la galería tiene 3 hijos es porque no se tuvo que crear el h2 para error. Sino, si se tuvo que crear el h2 por lo que tiene más hijos.
     if (gallery.childNodes.length == 3){
+        // Borra los hijos del contenedor de la galería.
         removeAllChild(galleryContainer);
+        // Carga las fotos aleatorias del principio.
         getInitialRandomPhotos(apiPhotos);
     }else{
+        // Borra el h2 con el error.
         gallery.childNodes[1].remove();
+        // Carga las fotos aleatorias del principio.
         getInitialRandomPhotos(apiPhotos);
     }
 });
@@ -153,6 +163,7 @@ const getSearchedPhotos = (e) => {
     } else{
         // Cuando sea 'false', avisamos el error.
         errorAlert.innerText = 'Debe introducir una palabra mayor a 3 letras.';
+        // Creamos un timer que limpie el 'errorAlert' despues de 1.5 segundos.
         setTimeout(() => {
             errorAlert.innerText = '';
         }, 1500);
