@@ -8,7 +8,9 @@ Utilizando la api de [Pexels](https://www.pexels.com/es-es/api/), la cual básic
 Incluso cada item que devuelve la api cuenta con el nombre del fotográfo que tomó la foto, por lo que se mostrará esa información mediante un modal al hacer click sobre una imagen.
 
 ## Simulador
-Se realizaron algunas mejoras, como la implementación de rutas de imágenes a las própias fotos de la galería. Además se añadió la funcionalidad para cambiar el tema de la página mediante la utilización del localStorage de Javascript.
+Se cambió considerablemente algunas cosas del simulador. Ahora tenemos un array de objetos cuyos primeros 8 items los usé para las 'fotos aleatorias' y los restantes para que sean buscados por la barra de búsqueda. Para eso se utilizan dos funciones distintas, que obtienen lo que se desea apartir de ese array de objetos y una función los convierte en la clase Photo y renderiza un elemento para el HTML.
+
+Además, se creó un método para la clase Photo el cual utiliza la libreria SweetAlert y lanza un modal con la foto. 
 
 Puede ver el simulador funcionando [aquí](https://lucapandolfelli.github.io/proyecto-final-javascript-coderhouse/).
 
