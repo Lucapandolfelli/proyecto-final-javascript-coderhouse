@@ -62,4 +62,26 @@
             object-fit: cover;
         }
     }
+
+    &__load-more{
+        @include flex(center, center, row);
+        margin-top: 2rem;
+
+        a{
+            @include flex(center, center, row);
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--clr-text-gallery);
+            border-radius: 50%;
+            text-decoration: none;
+
+            &:hover{
+                cursor: pointer;
+            }
+
+            i{
+                color: var(--clr-text-gallery);
+            }
+        }
+    }
 }
