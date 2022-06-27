@@ -7,7 +7,7 @@ class Photo {
     constructor(json){
         Object.assign(this, json);
     }
-    showModal(){
+    /* showModal(){
         Swal.fire({
             width: '50rem',
             imageUrl: this.src.original,
@@ -15,7 +15,7 @@ class Photo {
             showConfirmButton: false,  
             imageAlt: this.alt
         });
-    }
+    } */
 }
 
 // La API key que pedí a la API de Pexels.
@@ -45,112 +45,114 @@ const removeAllChild = (parent) => {
     }
 }
 
-// Creamos una función que nos permita crear nuevos elementos (fotos) para la galería.
-const createNewGalleryItem = (photoObject) => {
-    // Creamos un nuevo objeto 'Photo' a partir del objeto que nos dá el 'json'.
-    const photo = new Photo(photoObject);
-    // Creamos un nuevo elemento article.
-    let newGalleryItem = document.createElement('article');
-    // Le asignamos la clase que define los estilos que poseerán las fotos.
-    newGalleryItem.classList.add('gallery__item');
-    // Y le ponemos una etiqueta img con los datos del objeto para que se muestren.
-    newGalleryItem.innerHTML = `<img src="${photo.src.large}" alt="${photo.alt}"></img>`;
-    // Y por último le agregamos ese nuevo elemento a la galería. Utilicé el 'prepend' ya que quiero que se agregue al principio, para respetar el orden que simulo en el array.
-    galleryContainer.prepend(newGalleryItem);
-    // Retornamos el objeto 'Photo' para poder utilizarlo posteriormente.
-    return photo;
+let pageIndex = 1;
+let searchValue;
+
+const fetchPhotos = async (baseURL) => {
+    const res = await fetch(baseURL, HEADERS);
+    const data = await res.json();
+    return data;
 }
 
-/* const getNextPage = (next_page) => {
-    if (next_page){
-        loadMoreBtn.addEventListener('click', async () => {
-            const data = await fetchPhotos(next_page);
-            data.photos.map((photoObject) => {
-                let photo = createNewGalleryItem(photoObject);
-                let galleryItem = document.querySelector('article');
-                galleryItem.addEventListener('click', () => photo.showModal());
-            });
-        });
-    }else{
-        loadMoreBtn.style.display = 'none';
-    }
-} */
-
-// Creamos una función que nos devuelva las fotos a partir de lo ingresado por el usuario en la barra de búsqueda.
-const getSearchedPhotos = (searchValue) => {
-    fetch(`https://api.pexels.com/v1/search?query=${searchValue}&per_page=16`, HEADERS)
-        .then((res) => res.json())
-        .then((data) => {
-            removeAllChild(galleryContainer);
-            data.photos.map((photoObject) => {
-                let photo = createNewGalleryItem(photoObject);
-                let galleryItem = document.querySelector('article');
-                galleryItem.addEventListener('click', () => photo.showModal());
-            });
-        });
-    /* getNextPage(data.next_page); */
-}
-
-// Creamos una función que nos devuelva fotos aleatorias.
-const getInitialRandomPhotos = () => {
-    fetch(`https://api.pexels.com/v1/curated?page=1&per_page=16`, HEADERS)
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-            data.photos.map((photoObject) => {
-                let photo = createNewGalleryItem(photoObject);
-                let galleryItem = document.querySelector('article');
-                galleryItem.addEventListener('click', () => photo.showModal());
-            });
-        });
-    /* getNextPage(data.next_page); */
-}
-
-// Creamos una función que nos permita tomar lo que el usuario ingresa en la barra de búsqueda y fijarnos si matchea con alguna de las fotos que tenemos guardadas en el array (simulador de base de datos).
-const getSearcheInputValue = (e) => {
-    // Evitamos el funcionamiento por defualt del evento submit.
-    e.preventDefault();
-    // Tomamos al input del form y lo almacenamos.
-    let inputSearch = e.target.querySelector('input');
-    // Y también guardamos el value en otra.
-    const userSearch = inputSearch.value;
-    // Validamos el value del input.
-    if (userSearch.length > 3){
-        // Llamamos a la función que filtra.
-        getSearchedPhotos(userSearch);
-        errorAlert.innerText = '';
-    } else{
-        // Sino, avisamos el error.
+const validateSearchValue = (searchValue) => {
+    if (searchValue.length < 3){
+        // Avisamos el error.
         errorAlert.innerText = 'Debe introducir una palabra mayor a 3 letras.';
         // Creamos un timer que limpie el 'errorAlert' despues de 1.5 segundos.
         setTimeout(() => {
             errorAlert.innerText = '';
         }, 1500);
+    }else{
+        return true;
     }
 }
 
-// Evento submit del form, donde se llama a una función que trae las fotos a partir de la búsqueda.
-searchForm.addEventListener('submit', (e) => getSearcheInputValue(e));
+const generateHTML = (data, photoType) => {
+    data.photos.forEach((photoObject) => {
+        const photo = new Photo(photoObject);
+        // Creamos un nuevo elemento article.
+        let newGalleryItem = document.createElement('article');
+        // Le asignamos la clase que define los estilos que poseerán las fotos.
+        newGalleryItem.classList.add('gallery__item');
+        newGalleryItem.setAttribute('data-photo', photoType);
+        // Y le ponemos una etiqueta img con los datos del objeto para que se muestren.
+        newGalleryItem.innerHTML = `<img src="${photo.src.large}" alt="${photo.alt}"></img>`;
+        // Y por último le agregamos ese nuevo elemento a la galería.
+        galleryContainer.append(newGalleryItem);
+    });
+}
 
+// Creamos una función que nos devuelva las fotos a partir de lo ingresado por el usuario en la barra de búsqueda.
+const getSearchedPhotos = async (e) => {
+    e.preventDefault();
+    searchValue = e.target.querySelector('input').value;
+    if (validateSearchValue(searchValue) === true){
+        const data = await fetchPhotos(`https://api.pexels.com/v1/search?query=${searchValue}&per_page=16`);
+        if (!data.next_page){
+            loadMoreBtn.style.display = 'none'
+        }
+        removeAllChild(galleryContainer);
+        generateHTML(data, 'search');
+    }
+}
+
+const getMoreSearchedPhotos = async (index) => {
+    const data = await fetchPhotos(`https://api.pexels.com/v1/search?query=${searchValue}&per_page=16&page=${index}`);
+    if (!data.next_page){
+        loadMoreBtn.style.display = 'none'
+    }
+    generateHTML(data, 'search');
+}
+
+// Creamos una función que nos devuelva fotos aleatorias.
+const getInitialRandomPhotos = async (index) => {
+    const data = await fetchPhotos(`https://api.pexels.com/v1/curated?per_page=16&page=${index}`);
+    if (!data.next_page){
+        loadMoreBtn.style.display = 'none'
+    }
+    generateHTML(data, 'curated');
+}
+
+const loadMorePhotos = () => {
+    let index = ++pageIndex;
+    let galleryItem = document.querySelector('article');
+    let dataPhoto = galleryItem.getAttribute('data-photo')
+    if (dataPhoto == 'curated'){
+        getInitialRandomPhotos(index);
+    }else{
+        getMoreSearchedPhotos(index);
+    }
+}
+
+
+/****  EVENTOS  ****/
+
+// Evento submit del form, donde se llama a una función que trae las fotos a partir de la búsqueda.
+searchForm.addEventListener('submit', (e) => getSearchedPhotos(e));
+loadMoreBtn.addEventListener('click', () => loadMorePhotos());
 // Cuando se carge la ventana, llamamos a la función que nos carga 8 fotos simulando que son fotos aleatorias.
-document.addEventListener('DOMContentLoaded', getInitialRandomPhotos());
+document.addEventListener('DOMContentLoaded', getInitialRandomPhotos(pageIndex));
 
 // Botón para limpiar el input del form.
 clearInputButton.addEventListener('click', () => {
+    let pageIndex = 1;
     // Limpiamos el input.
     document.getElementById('searchInput').value = '';
     // Cuando la galería tiene 3 hijos es porque no se tuvo que crear el h2 para error. Sino, si se tuvo que crear el h2 por lo que tiene más hijos.
-    if (gallery.childNodes.length == 3){
+    /* if (gallery.childNodes.length == 3){
         // Borra los hijos del contenedor de la galería.
         removeAllChild(galleryContainer);
         // Carga las fotos aleatorias del principio.
-        getInitialRandomPhotos();
+        getInitialRandomPhotos(pageIndex);
     }else{
         // Borra el h2 con el error.
         gallery.childNodes[1].remove();
         // Carga las fotos aleatorias del principio.
-        getInitialRandomPhotos();
-    }
+        getInitialRandomPhotos(pageIndex);
+    } */
+    removeAllChild(galleryContainer);
+    getInitialRandomPhotos(pageIndex);
+    loadMoreBtn.style.display = 'flex';
 });
 
 

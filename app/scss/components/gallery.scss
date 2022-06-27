@@ -74,12 +74,19 @@
             border: 1px solid var(--clr-text-gallery);
             border-radius: 50%;
             text-decoration: none;
+            transition: all .4s ease;
 
             &:hover{
                 cursor: pointer;
+                border: 1px solid var(--clr-text-gallery-2);
+
+                i{
+                    color: var(--clr-text-gallery-2);
+                }
             }
 
             i{
+                transition: all .4s ease;
                 color: var(--clr-text-gallery);
             }
         }
