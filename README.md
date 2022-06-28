@@ -14,5 +14,5 @@ Por otra parte, se tuvieron en cuenta los principales errores que pueden llegar 
 
 Se removió momentáneamente el uso de la librería SweetAlert devido a cambios en la estrcutura del código que afectaron su funcionamiento.
 
-Puede ver la aplicación funcionando en este [Link]()
+Puede ver la aplicación funcionando en este [Link](https://lucapandolfelli.github.io/proyecto-final-javascript-coderhouse/)
 
