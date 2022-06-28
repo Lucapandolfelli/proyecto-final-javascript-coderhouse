@@ -7,11 +7,12 @@ Utilizando la api de [Pexels](https://www.pexels.com/es-es/api/), la cual básic
 
 Incluso cada item que devuelve la api cuenta con el nombre del fotográfo que tomó la foto, por lo que se mostrará esa información mediante un modal al hacer click sobre una imagen.
 
-## Simulador
-Se cambió considerablemente algunas cosas del simulador. Ahora tenemos un array de objetos cuyos primeros 8 items los usé para las 'fotos aleatorias' y los restantes para que sean buscados por la barra de búsqueda. Para eso se utilizan dos funciones distintas, que obtienen lo que se desea apartir de ese array de objetos y una función los convierte en la clase Photo y renderiza un elemento para el HTML.
+## Novedades
+La aplicación va tomando cada vez más forma, según lo pensado. Actualmente se encuentra utilizando la API de Pexels en dos diferentes formas: devolviendo fotos 'random' y devolviendo fotos mediante la búsqueda del usuario. Además, se implementó la funcionalidad de cargar más fotos (en el caso que se puede), ya que es una opción que nos permite aprovechar la API.
 
-Además, se creó un método para la clase Photo el cual utiliza la libreria SweetAlert y lanza un modal con la foto. 
+Por otra parte, se tuvieron en cuenta los principales errores que pueden llegar a surgir, aunque todavia queda evaluar los producidos por problemas con la API. 
 
-Puede ver el simulador funcionando [aquí](https://lucapandolfelli.github.io/proyecto-final-javascript-coderhouse/).
+Se removió momentáneamente el uso de la librería SweetAlert devido a cambios en la estrcutura del código que afectaron su funcionamiento.
 
+Puede ver la aplicación funcionando en este [Link]()
 
