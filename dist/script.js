@@ -48,12 +48,15 @@ const removeAllChild = (parent) => {
 let pageIndex = 1;
 let searchValue;
 
+
+// Creamos una función que nos permita realizar el fetch a partir de una URL y retornar la 'data' para asi trabajarla como querramos.
 const fetchPhotos = async (baseURL) => {
     const res = await fetch(baseURL, HEADERS);
     const data = await res.json();
     return data;
 }
 
+// Creamos una función que valide lo ingresado por el usuario.
 const validateSearchValue = (searchValue) => {
     if (searchValue.length < 3){
         // Avisamos el error.
@@ -67,6 +70,7 @@ const validateSearchValue = (searchValue) => {
     }
 }
 
+// Creamos una función que nos permita mapear las fotos devueltas por la API, crear una instancia del objeto Photo a partir de los datos de la API, y crear su respectivo elemento en HTML.
 const generateHTML = (data, photoType) => {
     data.photos.forEach((photoObject) => {
         const photo = new Photo(photoObject);
@@ -74,6 +78,7 @@ const generateHTML = (data, photoType) => {
         let newGalleryItem = document.createElement('article');
         // Le asignamos la clase que define los estilos que poseerán las fotos.
         newGalleryItem.classList.add('gallery__item');
+        // Le asignamos un atributo 'data-photo' para poder saber si la foto es el resultado de una búsqueda o es una foto random.
         newGalleryItem.setAttribute('data-photo', photoType);
         // Y le ponemos una etiqueta img con los datos del objeto para que se muestren.
         newGalleryItem.innerHTML = `<img src="${photo.src.large}" alt="${photo.alt}"></img>`;
@@ -82,25 +87,36 @@ const generateHTML = (data, photoType) => {
     });
 }
 
+// Creamos una función que nos permita validar algunos errores para asi mostrarlos por el HTML.
+const validateErrors = (data, searchValue) => {
+    // Si no tiene más paginaciones, oculta el botoón de cargar más fotos.
+    if (!data.next_page){
+        loadMoreBtn.style.display = 'none'
+    }
+    // Si la API nos devuelve una array vacio, por medio de un H2 informamos el error.
+    if (data.photos.length === 0){
+        let textError = document.createElement('h2');
+        textError.innerText = `No se encontraron fotos de '${searchValue}'`;
+        gallery.prepend(textError);
+    }
+}
+
 // Creamos una función que nos devuelva las fotos a partir de lo ingresado por el usuario en la barra de búsqueda.
 const getSearchedPhotos = async (e) => {
     e.preventDefault();
     searchValue = e.target.querySelector('input').value;
     if (validateSearchValue(searchValue) === true){
         const data = await fetchPhotos(`https://api.pexels.com/v1/search?query=${searchValue}&per_page=16`);
-        if (!data.next_page){
-            loadMoreBtn.style.display = 'none'
-        }
+        validateErrors(data, searchValue);
         removeAllChild(galleryContainer);
         generateHTML(data, 'search');
     }
 }
 
+// Creamos una función que nos devuelva otras páginas de fotos respecto de la búsqueda anterior.
 const getMoreSearchedPhotos = async (index) => {
     const data = await fetchPhotos(`https://api.pexels.com/v1/search?query=${searchValue}&per_page=16&page=${index}`);
-    if (!data.next_page){
-        loadMoreBtn.style.display = 'none'
-    }
+    validateErrors(data, searchValue);
     generateHTML(data, 'search');
 }
 
@@ -113,6 +129,7 @@ const getInitialRandomPhotos = async (index) => {
     generateHTML(data, 'curated');
 }
 
+// Creamos una funcióm que nos permita cargar las paginaciones dependiendo del tipo de foto.
 const loadMorePhotos = () => {
     let index = ++pageIndex;
     let galleryItem = document.querySelector('article');
@@ -129,6 +146,7 @@ const loadMorePhotos = () => {
 
 // Evento submit del form, donde se llama a una función que trae las fotos a partir de la búsqueda.
 searchForm.addEventListener('submit', (e) => getSearchedPhotos(e));
+// Evento click del botón para cargar más fotos mediante las paginaciones de la API.
 loadMoreBtn.addEventListener('click', () => loadMorePhotos());
 // Cuando se carge la ventana, llamamos a la función que nos carga 8 fotos simulando que son fotos aleatorias.
 document.addEventListener('DOMContentLoaded', getInitialRandomPhotos(pageIndex));
@@ -139,19 +157,17 @@ clearInputButton.addEventListener('click', () => {
     // Limpiamos el input.
     document.getElementById('searchInput').value = '';
     // Cuando la galería tiene 3 hijos es porque no se tuvo que crear el h2 para error. Sino, si se tuvo que crear el h2 por lo que tiene más hijos.
-    /* if (gallery.childNodes.length == 3){
+    if (gallery.childNodes.length === 3){
         // Borra los hijos del contenedor de la galería.
         removeAllChild(galleryContainer);
         // Carga las fotos aleatorias del principio.
         getInitialRandomPhotos(pageIndex);
     }else{
         // Borra el h2 con el error.
-        gallery.childNodes[1].remove();
+        gallery.childNodes[0].remove();
         // Carga las fotos aleatorias del principio.
         getInitialRandomPhotos(pageIndex);
-    } */
-    removeAllChild(galleryContainer);
-    getInitialRandomPhotos(pageIndex);
+    }
     loadMoreBtn.style.display = 'flex';
 });
 
