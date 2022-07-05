@@ -10,7 +10,7 @@ class Photo {
     showModal(){
         Swal.fire({
             width: '50rem',
-            imageUrl: this.src.original,
+            imageUrl: this.src.large2x,
             imageWidth: '60%',  
             showConfirmButton: false,  
             imageAlt: this.alt,
