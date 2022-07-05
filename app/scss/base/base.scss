@@ -32,14 +32,24 @@ h1{
     @include flex(center, center, row);
     display: none;
     position: fixed;
-    right: 4rem;
-    bottom: 4rem;
+    right: 2rem;
+    bottom: 2rem;
     height: 50px;
     width: 50px;
     background-color: var(--clr-bg-top-btn);
     border-radius: 50%;
     text-decoration: none;
     transition: all .4s ease;
+
+    @include mq(small){
+        right: 3rem;
+        bottom: 3rem;
+    }
+
+    @include mq(medium){
+        right: 4rem;
+        bottom: 4rem;
+    }
 
     &:hover{
         transform: translateY(-5px);
