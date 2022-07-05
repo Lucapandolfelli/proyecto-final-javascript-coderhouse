@@ -13,7 +13,8 @@ class Photo {
             imageUrl: this.src.original,
             imageWidth: '60%',  
             showConfirmButton: false,  
-            imageAlt: this.alt
+            imageAlt: this.alt,
+            footer: `<p>Foto por: ${this.photographer}</p>`
         });
     }
 }
