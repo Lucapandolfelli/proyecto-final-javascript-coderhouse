@@ -30,6 +30,7 @@ const HEADERS = {
 }
 
 // Definimos los elementos del DOM que necesitaremos.
+let topBtn = document.getElementById('topBtn')
 let loadMoreBtn = document.getElementById('loadMoreBtn');
 let errorAlert = document.getElementById('errorAlert');
 let clearInputButton = document.getElementById('clearInput');
@@ -191,6 +192,16 @@ searchForm.addEventListener('submit', (e) => getSearchedPhotos(e));
 loadMoreBtn.addEventListener('click', () => loadMorePhotos());
 // Evento click del botón para limpiar el input y la galería.
 clearInputButton.addEventListener('click', () => clearInputAndGallery());
+// Evento para el botón de volver arriba.
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 1){
+        // Si se hace scroll, se muestra el botón cambiandole el display.
+        topBtn.style.display = 'flex';
+    }else if(window.scrollY < 1){
+        // Si se vuelve a la parte superior, se vuelve a ocultar el botón.
+        topBtn.style.display = 'none';
+    }
+})
 
 /*******************/
 

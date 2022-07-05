@@ -1,6 +1,11 @@
 @use '../util/theme.scss' as *;
 @use '../util/classes.scss' as *;
 @use '../util/breakpoints.scss' as *;
+@use '../util/mixins.scss' as *;
+
+html{
+    scroll-behavior: smooth;
+}
 
 body{
     font-family: 'Nunito', sans-serif;
@@ -20,5 +25,27 @@ h1{
 
     @include mq-down(small){
         margin-block: 3rem;
+    }
+}
+
+.btn-top{
+    @include flex(center, center, row);
+    display: none;
+    position: fixed;
+    right: 4rem;
+    bottom: 4rem;
+    height: 50px;
+    width: 50px;
+    background-color: var(--clr-bg-top-btn);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all .4s ease;
+
+    &:hover{
+        transform: translateY(-5px);
+    }
+
+    i{
+        color: var(--clr-text-top-btn);
     }
 }
