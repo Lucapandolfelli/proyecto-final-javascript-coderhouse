@@ -7,7 +7,7 @@ class Photo {
     constructor(json){
         Object.assign(this, json);
     }
-    /* showModal(){
+    showModal(){
         Swal.fire({
             width: '50rem',
             imageUrl: this.src.original,
@@ -15,7 +15,7 @@ class Photo {
             showConfirmButton: false,  
             imageAlt: this.alt
         });
-    } */
+    }
 }
 
 // La API key que pedí a la API de Pexels.
@@ -85,6 +85,8 @@ const generateHTML = (data, photoType) => {
         newGalleryItem.innerHTML = `<img src="${photo.src.large}" alt="${photo.alt}"></img>`;
         // Y por último le agregamos ese nuevo elemento a la galería.
         galleryContainer.append(newGalleryItem);
+        // Por último, cuando se realiza click sobre un elemento de la galería se lanza el método 'showModal'.
+        newGalleryItem.addEventListener('click', () => photo.showModal());
     });
 }
 
